@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Board.scss';
 import { Canvas } from "fabric";
 import { IconButton } from 'blocksin-system';
-import { SquareIcon, TriangleIcon, SlashIcon } from 'sebikostudio-icons';
+import { SquareIcon, TriangleIcon, SlashIcon, TextIcon } from 'sebikostudio-icons';
 import Settings from '../componentsForBoard/Settings.jsx';
 import CanvasSettings from '../componentsForBoard/CanvasSettings.jsx';
-import { addRectangle, addTriangle, addLine } from '../componentsForBoard/Shapes.jsx'
+import { addRectangle, addTriangle, addLine, addText } from '../componentsForBoard/Shapes.jsx'
 import { saveNameBoard } from '../services/boardService.js'; 
 
 function Board() {
@@ -60,6 +60,9 @@ function Board() {
 				<IconButton onClick={() => addLine(canvas)} variant="ghost" size="medium">
 					<SlashIcon />
 				</IconButton>
+                <IconButton onClick={() => addText(canvas)} variant="ghost" size="medium">
+                    <TextIcon />
+                </IconButton>
 				<form className='name-of-board' onSubmit={handleSubmit}>
 					<label>
 						Название доски:

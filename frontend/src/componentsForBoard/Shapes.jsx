@@ -1,4 +1,4 @@
-import { Rect, Triangle, Line } from "fabric";
+import { Rect, Triangle, Line, Textbox } from "fabric";
 
 export const assignIdToShape = (shape, prefix) => {
 	shape.id = `${new Date().getTime()}`;
@@ -45,6 +45,7 @@ export const addTriangle = (canvas) => {
 	}
 };
 
+
 export const addLine = (canvas) => {
 	if (canvas) {
 		const line = new Line([100, 100, 200, 200], {
@@ -55,4 +56,23 @@ export const addLine = (canvas) => {
 		canvas.add(line);
 		console.log("линия", JSON.stringify(line.toObject()));
 	}
+};
+
+
+export const addText = (canvas) => {
+    if (canvas) {
+        const text = new Textbox("", {
+            top: 300,
+            left: 100,
+            width: 200,
+            height: 50,
+            fontSize: 20,
+            fill: "#42D884",
+            textAlign: "center",
+            editable: true,
+        });
+        assignIdToShape(text);
+        canvas.add(text);
+        canvas.setActiveObject(text);
+    }
 };
