@@ -27,17 +27,8 @@ function Settings({ canvas }) {
 
 	const handleObjectSelection = (object) => {
 		if (!object) return;
-
 		setSelectedObject(object);
-		setColor(object.fill);
-		setColor(object.stroke);
-
-		if (object.type === "rect" || object.type === "triangle") {
-			setColor(object.fill);
-		} else if (object.type === "line") {
-			setColor(object.stroke);
-		}
-		console.log("Цвет объекта:", JSON.stringify(object.fill) || JSON.stringify(object.stroke));
+		setColor(object.fill || object.stroke);
 	};
 
 
@@ -48,50 +39,26 @@ function Settings({ canvas }) {
 	const handleColorChange = (e) => {
 		const value = e.target.value;
 		setColor(value);
-		if (selectedObject) {
-			if (selectedObject.type === "rect" || selectedObject.type === "triangle") {
-				selectedObject.set({ fill: value });
-			} else if (selectedObject.type === "line") {
-				selectedObject.set({ stroke: value });
-			}
-			canvas.renderAll();
-		}
+        if (selectedObject.type === "text") {
+            selectedObject.setTextColor(value);
+        } else if (selectedObject.type === "line") {
+            selectedObject.set({ stroke: value });
+        } else {
+            selectedObject.set({ fill: value })
+        }
+        canvas.renderAll();
 	};
 
 
 	return (
 		<div>
-			{selectedObject && selectedObject.type === "rect" && (
-				<>
-					<Input
-						label="Цвет объекта"
-						value={color}
-						type="color"
-						onChange={handleColorChange}
-					/>
-				</>
-			)}
-
-			{selectedObject && selectedObject.type === "triangle" && (
-				<>
-					<Input
-						label="Цвет объекта"
-						value={color}
-						type="color"
-						onChange={handleColorChange}
-					/>
-				</>
-			)}
-
-			{selectedObject && selectedObject.type === "line" && (
-				<>
-					<Input
-						label="Цвет объекта"
-						value={color}
-						type="color"
-						onChange={handleColorChange}
-					/>
-				</>
+			{selectedObject && (
+                <Input
+                    label="Цвет объекта"
+                    value={color}
+                    type="color"
+                    onChange={handleColorChange}
+                />
 			)}
 		</div>
 	);
