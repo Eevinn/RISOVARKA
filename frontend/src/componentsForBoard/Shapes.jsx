@@ -1,4 +1,5 @@
-import { Rect, Triangle, Line, Textbox } from "fabric";
+import { Rect, Triangle, Line, Textbox, Group } from "fabric";
+
 
 export const assignIdToShape = (shape, prefix) => {
 	shape.id = `${new Date().getTime()}`;
@@ -74,5 +75,63 @@ export const addText = (canvas) => {
         assignIdToShape(text);
         canvas.add(text);
         canvas.setActiveObject(text);
+    }
+};
+
+
+const sizeOfSticker = (text, rect) => {
+    if (text.width > rect.width - 20) {
+        rect.set({ width: text.width + 20 });
+    }
+    if (text.height > rect.height - 20) {
+        rect.set({ height: text.width + 20 });
+    }
+
+    rect.setCoords();
+};
+
+export const addSticker = (canvas) => {
+    if (canvas) {
+        const stickerBackground = new Rect ({
+            width: 200,
+            height: 150,
+            fill: "yellow",
+            rx: 20,
+            ry: 20,
+        });
+
+        const stickerText = new Textbox ("txt", {
+           width: 180,
+           fontSize: 24,
+           left: 10,
+           top: 10,
+           fill: "black",
+           textAlign: "center",
+           editable: true,
+        });
+
+        const sticker = new Group ([stickerBackground, stickerText], {
+           left: 100,
+           top: 100,
+        });
+
+        canvas.add(sticker);
+        canvas.setActiveObject(sticker);
+
+        sticker.on('mousedblclick', () => {
+            stickerText.enterEditing();
+            canvas.setActiveObject(stickerText);
+            stickerText.selectAll();
+        });
+
+        stickerText.on('editing:exited', () => {
+            sizeOfSticker(stickerText, stickerBackground);
+            canvas.renderAll();
+        });
+
+        stickerText.on('changed', () => {
+            sizeOfSticker(stickerText, stickerBackground);
+            canvas.renderAll();
+        });
     }
 };
