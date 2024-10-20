@@ -10,3 +10,8 @@ export const saveNameBoard = async (boardName) => {
 	});
 	return console.log(boardName);
 };
+
+export const saveCanvasState = async(canvas) => {
+    const canvasData = canvas.toJSON();
+    const response = await axios.post(`${API_URL}/message`, { canvas: canvasData });
+};
