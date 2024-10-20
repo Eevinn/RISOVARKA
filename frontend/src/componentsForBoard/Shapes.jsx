@@ -95,7 +95,7 @@ export const addSticker = (canvas) => {
         const stickerBackground = new Rect ({
             width: 200,
             height: 150,
-            fill: "yellow",
+            fill: "#42D884",
             rx: 20,
             ry: 20,
         });

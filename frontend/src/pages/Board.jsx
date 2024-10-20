@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Board.scss';
 import { Canvas } from "fabric";
-import { IconButton } from 'blocksin-system';
+import { IconButton, Button } from 'blocksin-system';
 import { SquareIcon, TriangleIcon, SlashIcon, TextIcon, StickyNoteIcon } from 'sebikostudio-icons';
 import Settings from '../componentsForBoard/Settings.jsx';
 import CanvasSettings from '../componentsForBoard/CanvasSettings.jsx';
 import { addRectangle, addTriangle, addLine, addText, addSticker } from '../componentsForBoard/Shapes.jsx'
-import { saveNameBoard } from '../services/boardService.js'; 
+import { saveNameBoard, saveCanvasState } from '../services/boardService.js';
 
 function Board() {
 	const canvasRef = useRef(null);
@@ -45,6 +45,16 @@ function Board() {
 	};
 	
 
+	const handleSaveCanvas = async () => {
+		try {
+			await saveCanvasState(canvas);
+			console.log('Состояние доски сохранено.');
+		} catch (error) {
+			console.error('Ошибка при сохранении состояния доски:', error);
+		}
+	};
+
+
 	return (
 		<div className='board'>
 			<canvas id='canvas' ref={canvasRef} />
@@ -78,6 +88,10 @@ function Board() {
 					</label>
 					<input type="submit" value="Сохранить" />
 				</form>
+
+                <Button onClick={handleSaveCanvas}>
+                    Сохранить доску
+                </Button>
 
 			</div>
 		</div>
