@@ -117,6 +117,7 @@ export const addSticker = (canvas) => {
 
         canvas.add(sticker);
         canvas.setActiveObject(sticker);
+        console.log("cnbrth", JSON.stringify(sticker.toObject(), null, 2));
 
         sticker.on('mousedblclick', () => {
             stickerText.enterEditing();

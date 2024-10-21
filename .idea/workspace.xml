@@ -4,30 +4,85 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="" />
+    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="he">
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/CanvasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Canvas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/CanvasRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/DemoPaintApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/DemoPaintApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/domain/Views.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Views.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/exceptions/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/repo/MessageRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/MessageRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/test/java/Back/DemoPaint/DemoPaintApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/test/java/Back/Paint/DemoPaintApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/boardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/boardService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2nFTZZYLcyvI7QI2YQIilLLkOJP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DemoPaintApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Dev",
+    "git-widget-placeholder": "future/Issue-12",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fukki/OneDrive/Рабочий стол/Paint-Web-App-main",
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
@@ -40,6 +95,42 @@
       <option name="presentableId" value="Default" />
       <updated>1728567881082</updated>
     </task>
+    <task id="LOCAL-00001" summary="he">
+      <option name="closed" value="true" />
+      <created>1728568484816</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728568484816</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="future/Issue-12" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="he" />
+    <option name="LAST_COMMIT_MESSAGE" value="he" />
   </component>
 </project>

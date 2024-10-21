@@ -1,4 +1,4 @@
-package Back.DemoPaint;
+package Back.Paint;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

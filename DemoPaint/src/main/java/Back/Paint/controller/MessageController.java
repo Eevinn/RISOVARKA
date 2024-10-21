@@ -1,8 +1,8 @@
-package Back.DemoPaint.controller;
+package Back.Paint.controller;
 
-import Back.DemoPaint.domain.Message;
-import Back.DemoPaint.domain.Views;
-import Back.DemoPaint.repo.MessageRepo;
+import Back.Paint.domain.Message;
+import Back.Paint.domain.Views;
+import Back.Paint.repo.MessageRepo;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.BeanUtils;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("message")
