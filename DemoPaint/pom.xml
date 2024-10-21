@@ -11,7 +11,7 @@
 	<groupId>Back</groupId>
 	<artifactId>DemoPaint</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DemoPaint</name>
+	<name>Paint</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

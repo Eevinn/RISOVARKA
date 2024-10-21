@@ -1,4 +1,4 @@
-package Back.DemoPaint;
+package Back.Paint;
 
 import Back.DemoPaint.storage.UserStorage;
 import Back.DemoPaint.user.User;

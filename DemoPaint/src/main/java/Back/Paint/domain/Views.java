@@ -1,4 +1,4 @@
-package Back.DemoPaint.domain;
+package Back.Paint.domain;
 
 public final class Views {
     public interface Id {}
