@@ -1,0 +1,13 @@
+.toolbar-content {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+
+	&.bottom {
+		flex-direction: row;
+	}
+
+	&.left {
+		flex-direction: column;
+	}
+}
