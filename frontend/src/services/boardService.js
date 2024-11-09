@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://localhost:8080/';
 
 export const saveNameBoard = async (boardName) => {
 	const response = await axios.post(`${API_URL}/message`, { text: boardName }, {
@@ -9,4 +9,9 @@ export const saveNameBoard = async (boardName) => {
 		}
 	});
 	return console.log(boardName);
+};
+
+export const saveCanvasState = async(canvas) => {
+	const canvasData = JSON.stringify(canvas.toJSON());
+	await axios.post(`${API_URL}/message`, { text: canvasData });
 };
