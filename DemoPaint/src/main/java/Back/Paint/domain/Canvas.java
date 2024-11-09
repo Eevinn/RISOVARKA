@@ -4,37 +4,38 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Data
-@Entity
-@Table
+@Document
 public class Canvas{
     @Id
     private String id;
-    @Column(name="lefter")
-    private int lefter;
-    @Column(name = "toper")
-    private int toper;
+    private String type;
+    private String version;
+    private String originX;
+    private String originY;
+    private int left;
+    private int top;
     private int width;
     private int height;
     private String fill;
-    private Integer strokeWidth;
     private String stroke;
-    private String strokeDashArray;
+    private int strokeWidth;
+    private Object strokeDashArray;
     private String strokeLineCap;
-    private double strokeDashOffset;
+    private int strokeDashOffset;
     private String strokeLineJoin;
     private boolean strokeUniform;
-    private double strokeMiterLimit;
+    private int strokeMiterLimit;
     private double scaleX;
     private double scaleY;
     private double angle;
     private boolean flipX;
     private boolean flipY;
     private double opacity;
-    private String shadow;
+    private Object shadow;
     private boolean visible;
     private String backgroundColor;
     private String fillRule;
@@ -42,5 +43,4 @@ public class Canvas{
     private String globalCompositeOperation;
     private double skewX;
     private double skewY;
-
 }

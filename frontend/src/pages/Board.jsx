@@ -7,9 +7,11 @@ import Settings from '../componentsForBoard/Settings.jsx';
 import CanvasSettings from '../componentsForBoard/CanvasSettings.jsx';
 import { addRectangle, addTriangle, addLine, addText, addSticker } from '../componentsForBoard/Shapes.jsx'
 import { saveNameBoard, saveCanvasState } from '../services/boardService.js';
+import axios from "axios";
 
 function Board() {
 	const canvasRef = useRef(null);
+	const canvasInstanceRef = useRef(null)
 	const [canvas, setCanvas] = useState(null);
 	const [boardName, setBoardName] = useState("");
 
@@ -23,10 +25,12 @@ function Board() {
 			initCanvas.backgroundColor = "#ffffff";
 			initCanvas.renderAll();
 			setCanvas(initCanvas);
+			canvasInstanceRef.current = initCanvas;
 			return () => {
 				initCanvas.dispose();
 			};
 		}
+
 	}, []);
 
 	const handleChange = (e) => {
@@ -45,15 +49,39 @@ function Board() {
 	};
 	
 
-	const handleSaveCanvas = async () => {
+	const handleSaveCanvas2 = async () => {
 		try {
-			await saveCanvasState(canvas);
+			await saveCanvasState32324(canvas);
 			console.log('Состояние доски сохранено.');
 		} catch (error) {
 			console.error('Ошибка при сохранении состояния доски:', error);
 		}
 	};
+   const handleSaveCanvas = async () => {
+       try {
+           const response = await axios.get(`http://localhost:8080/message/3`);
+           const canvasData = response.data.text;
+           console.log('Полученные данные:', canvasData);
+           console.log('Тип canvasData:', typeof canvasData);
 
+           const canvasJSON = JSON.parse(canvasData);
+           console.log('canvasJSON:', canvasJSON);
+           console.log('Тип canvasJSON:', typeof canvasJSON);
+
+           console.log('canvasJSON.objects:', canvasJSON.objects);
+
+           if (canvasInstanceRef.current) {
+               canvasInstanceRef.current.loadFromJSON(canvasJSON, () => {
+                   canvasInstanceRef.current.renderAll();
+                   console.log('Состояние доски загружено.');
+               });
+           } else {
+               console.error('Холст не инициализирован.');
+           }
+       } catch (error) {
+           console.error('Ошибка при загрузке состояния доски:', error);
+       }
+   };
 
 	return (
 		<div className='board'>
