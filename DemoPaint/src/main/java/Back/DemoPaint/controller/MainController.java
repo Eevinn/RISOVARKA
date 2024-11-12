@@ -29,9 +29,9 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/account")
     public String index() {
-        return "forward:/index.html";
+        return "account.html";
     }
 
     @GetMapping("/login")
@@ -53,7 +53,7 @@ public class MainController {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
             Authentication authentication = authenticationManager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "redirect:/index";
+            return "redirect:/account";
         } catch (BadCredentialsException | UsernameNotFoundException e) {
             return "redirect:/registration";
         }

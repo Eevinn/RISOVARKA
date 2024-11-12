@@ -68,6 +68,7 @@ function Board() {
 
 	const handleSaveCanvas = async () => {
 		try {
+            const canvas = canvasInstanceRef.current;
 			await saveCanvasState(canvas);
 			console.log('Состояние доски сохранено.');
 		} catch (error) {

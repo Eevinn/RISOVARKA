@@ -12,6 +12,6 @@ export const saveNameBoard = async (boardName) => {
 };
 
 export const saveCanvasState = async(canvas) => {
-	const canvasData = JSON.stringify(canvas.toJSON());
+	const canvasData = JSON.stringify(canvas.toObject());
 	await axios.post(`${API_URL}/message`, { text: canvasData });
 };

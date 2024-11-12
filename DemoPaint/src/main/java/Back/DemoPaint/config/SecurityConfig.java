@@ -46,7 +46,7 @@ public class SecurityConfig {
                 if (authority.getAuthority().equals("ROLE_ADMIN")) {
                     return "/employee/add"; // Перенаправление на страницу add для админа
                 } else if (authority.getAuthority().equals("ROLE_USER")) {
-                    return "/index"; // Перенаправление на страницу index для пользователя
+                    return "/account"; // Перенаправление на страницу account для пользователя
                 }
             }
             return "/"; // По умолчанию, если роль не найдена
@@ -74,7 +74,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/login", "/registration", "/postgres-console/**", "/createAccount").permitAll()
-                        .requestMatchers("/", "/index").hasAnyRole("USER") // Доступ для USER и ADMIN
+                        .requestMatchers("/", "/account").hasAnyRole("USER") // Доступ для USER и ADMIN
                         .requestMatchers("/employee/**").hasRole("ADMIN") // Доступ только для ADMIN
                         .anyRequest().authenticated()
                 )
@@ -93,6 +93,7 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 )
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
