@@ -19,13 +19,13 @@ html, body {
 }
 
 canvas {
-	flex: 1;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
-	right: 0;
-	bottom: 0;
+	width: 100%;
+	height: 100%;
 }
+
 
 
 .settings-wrapper {
@@ -51,8 +51,8 @@ canvas {
 	padding: 10px;
 	border-radius: 8px;
 	position: absolute;
-	top: 100px;
-	right: 100px;
+	top: 3px;
+	right: 150px;
 	z-index: 1000;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -91,5 +91,38 @@ canvas {
 
 .name-of-board input[type="submit"]:hover {
 	background-color: #36b874;
+}
+
+.header_board {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px;
+}
+
+.toolbar-position {
+	margin-top: 10px;
+}
+
+.toolbar-wrapper {
+	&.bottom {
+		position: absolute;
+		bottom: 10px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+	}
+
+	&.left {
+		position: absolute;
+		left: 10px;
+		margin-top: 200px;
+		height: 70%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+	}
 }
 
