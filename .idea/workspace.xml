@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавил контроллер и таблицу для ловли canvas">
-      <change afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Settings.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Sticker.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Toolbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/ToolbarComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Settings.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Account.jsx" beforeDir="false" />
-    </list>
+    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавил контроллер и таблицу для ловли canvas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,6 +154,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="he" />
     <MESSAGE value="Добавил контроллер и таблицу для ловли canvas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил контроллер и таблицу для ловли canvas" />
+    <MESSAGE value="Добавила функции для связи объектов с сервером." />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавила функции для связи объектов с сервером." />
   </component>
 </project>
