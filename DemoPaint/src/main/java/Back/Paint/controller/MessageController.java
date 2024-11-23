@@ -42,6 +42,7 @@ public class MessageController {
     }
 
     @PutMapping("{id}")
+    @JsonView(Views.FullMessage.class)
     public Message update(
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
