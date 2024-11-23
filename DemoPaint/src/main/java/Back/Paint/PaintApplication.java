@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-public class DemoPaintApplication {
+public class PaintApplication {
 
 	@Bean(name = "storageServicePasswordEncoder")
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -18,7 +18,7 @@ public class DemoPaintApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoPaintApplication.class, args);
+		SpringApplication.run(PaintApplication.class, args);
 	}
 
 	@Bean

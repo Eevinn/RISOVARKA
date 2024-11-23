@@ -124,7 +124,7 @@ function Board() {
 
 	const handleLoadSingleObject = async () => {
 		try {
-			const response = await axios.get(`http://localhost:8080/message/1732038235684`);
+			const response = await axios.get(`http://localhost:8080/message/1732107916465`);
 			const objectData = response.data.text;
 			const parsedObject = JSON.parse(objectData);
 
