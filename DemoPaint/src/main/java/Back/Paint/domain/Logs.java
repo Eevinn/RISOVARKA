@@ -2,20 +2,28 @@ package Back.Paint.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-@Setter
-@Getter
+
+
 @Data
 @Entity
 @Table
 @EqualsAndHashCode(of = {"id"})
-public class Message {
+public class Logs {
 
-    @Id
     @JsonView(Views.Id.class)
+    @Id
     private Long id;
 
     @JsonView(Views.IdName.class)

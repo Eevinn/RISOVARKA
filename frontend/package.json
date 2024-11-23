@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@fontsource/roboto": "^5.1.0",
     "@mui/icons-material": "^6.1.6",
-    "@mui/material": "^6.1.6",
+    "@mui/material": "^6.1.7",
+    "@stomp/stompjs": "^7.0.0",
     "axios": "^1.7.7",
     "blocksin-system": "^1.5.8",
     "d3": "^7.9.0",
@@ -23,7 +24,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
     "sass": "^1.79.3",
-    "sebikostudio-icons": "^1.4.1"
+    "sebikostudio-icons": "^1.4.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
