@@ -3,15 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Аккаунт</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <style>
+        body {
+          background-color: #f0f0f0;
+        }
+        .ui.menu {
+          border-radius: 0;
+          margin-bottom: 2em;
+        }
+        .ui.inverted.menu .item, .ui.inverted.menu .link {
+          color: white !important;
+        }
+        .sidebar {
+          width: 180px; /* Adjust sidebar width as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Аккаунт пользователя</h1>
-    <div sec:authorize="hasRole('ROLE_USER')">
-        <a sec:authentication="name"></a>
 
-        <form th:action="@{/logout}" th:method="POST">
-            <input type="submit" value="Выход">
-        </form>
+<div class="ui inverted menu">
+    <div class="ui container">
+        <a href="/" class="item">Главная</a>
+        <div class="right menu">
+            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
+                <form th:action="@{/logout}" th:method="POST" class="ui form">
+                    <button class="ui button" type="submit">Выход</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="ui grid">
+    <div class="four wide column sidebar">
+        <div class="ui vertical menu">
+            <a href="#" class="item">Друзья</a>
+            <a href="#" class="item">Доски</a>
+            <a href="#" class="item">Настройки</a>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <div class="ui container">
+            <h1>Ваш аккаунт</h1>
+            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
+                Привет, <span sec:authentication="name"></span>!
+            </div>
+            <p>Здесь будет информация о вашем аккаунте.</p>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
 </html>
+
+
+
+

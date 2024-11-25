@@ -1,32 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </head>
-
 <body>
-    <form th:action="@{/process_registration}" th:object="${person}" method="post">
-        <div>
-            <label for="username">Имя пользователя</label>
-            <input type="text" id="username" th:field="*{username}" placeholder="Введите имя пользователя"/>
-            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-        </div>
-        <div>
-            <label for="password">Пароль</label>
-            <input type="password" id="password" th:field="*{password}" placeholder="Введите пароль"/>
-            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-        </div>
-        <button type="submit">Зарегистрироваться</button>
-    </form>
 
+<style>
+    body {
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .ui.form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .ui.error.message {
+      color: red;
+      margin-top: 5px;
+    }
+    .welcome-text {
+      text-align: center;
+      margin-top: 30px;
+    }
+        .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+  }
+</style>
 
-    <h1>Добро пожаловать<br></h1>
-    <p >Войти с помощью логина и пароля</p>
-    <a href="/login">
-        <button id="login">войти</button></a>
+<div class="ui container">
+    <div class="ui segment">
+        <div class="flex-container">
+        <h2 class="ui header">Регистрация</h2>
+        </div>
+        <form class="ui form" th:action="@{/process_registration}" th:object="${person}" method="post">
+            <div class="field">
+                <label>Имя пользователя</label>
+                <input type="text" th:field="*{username}" placeholder="Введите имя пользователя" required>
+                <div class="ui error message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            </div>
+            <div class="field">
+                <label>Пароль</label>
+                <input type="password" th:field="*{password}" placeholder="Введите пароль" required>
+                <div class="ui error message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+            <button class="ui button primary" type="submit">Зарегистрироваться</button>
+        </form>
+
+        <div class="welcome-text">
+            <h3 class="ui header">Уже зарегистрированы?</h3>
+            <p>Войти с помощью логина и пароля</p>
+            <a href="/login" class="ui button">Войти</a>
+        </div>
+    </div>
+</div>
 
 </body>
-
 </html>
+
+

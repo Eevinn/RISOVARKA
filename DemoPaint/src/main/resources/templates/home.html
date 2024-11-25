@@ -1,37 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-        }
-    </style>
     <title>RISOVARKA</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 </head>
-<header class="header">
-    <h1>Рисоварка</h1>
-
-    <div>
-        <button type="button" onclick="location.href='http://localhost:5173/'">Доска</button>
-    </div>
-
-    <div sec:authorize="isAnonymous()">
-        <a th:href="@{/login}">Войти</a>
-    </div>
-</header>
-
 <body>
-*Информация о приложении*
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0; /* Убрал padding */
+        background-color: #f4f4f4;
+    }
+    .main-container {
+        padding: 20px;
+    }
+    .ui.menu {
+        border-radius: 0; /* Убрал закругление у меню */
+    }
+    .ui.menu .item {
+        font-size: 1em;
+    }
+</style>
+
+<div class="ui inverted menu">
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <a class="item" href="http://localhost:5173/">Доска</a>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="ui segment">
+        <p>Информация о приложении</p>
+        <!-- Здесь можно добавить больше информации -->
+    </div>
+</div>
+
 </body>
 </html>
+
