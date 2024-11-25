@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +36,9 @@ public class PersonService {
     public void save(Person person){
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         personRepo.save(person);
+    }
+
+    public List<Person> getAllUsers() {
+        return personRepo.findAllByRole("ROLE_USER");
     }
 }

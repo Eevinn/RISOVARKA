@@ -26,7 +26,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
         if (roles.contains("ROLE_ADMIN")) {
-            response.sendRedirect("/admin/orders");
+            response.sendRedirect("/employee/admin");
         } else if (roles.contains("ROLE_USER")) {
             response.sendRedirect("/account");
         } else {

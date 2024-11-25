@@ -2,7 +2,7 @@
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Аккаунт</title>
+    <title>Аккаунт администратора</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <style>
         body {
@@ -10,46 +10,39 @@
         }
         .ui.menu {
           border-radius: 0;
-          margin-bottom: 2em;
         }
         .ui.inverted.menu .item, .ui.inverted.menu .link {
           color: white !important;
         }
         .sidebar {
-          width: 180px; /* Adjust sidebar width as needed */
+          width: 180px;
         }
     </style>
 </head>
 <body>
 
 <div class="ui inverted menu">
-    <div class="ui container">
-        <a href="/" class="item">Главная</a>
-        <div class="right menu">
-            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
-                <form th:action="@{/logout}" th:method="POST" class="ui form">
-                    <a class="item" href="/logout">Выйти</a>
-                </form>
-            </div>
-        </div>
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <a class="item" href="/">Главная</a>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
     </div>
 </div>
 
 <div class="ui grid">
     <div class="four wide column sidebar">
         <div class="ui vertical menu">
-            <a href="#" class="item">Друзья</a>
-            <a href="#" class="item">Доски</a>
+            <a href="/employee/users" class="item">Пользователи</a>
+            <a href="#" class="item">Доски пользователей</a>
             <a href="#" class="item">Настройки</a>
         </div>
     </div>
     <div class="twelve wide column">
         <div class="ui container">
-            <h1>Ваш аккаунт</h1>
-            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
-                Привет, <span sec:authentication="name"></span>!
-            </div>
-            <p>Здесь будет информация о вашем аккаунте.</p>
+            <p>Здесь будет статистика и прочее</p>
         </div>
     </div>
 </div>
@@ -59,7 +52,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </body>
 </html>
-
-
-
-
