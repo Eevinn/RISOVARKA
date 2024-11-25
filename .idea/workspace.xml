@@ -4,35 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавил контроллер и таблицу для ловли canvas">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/DTO/ShapeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/CustomAuthenticationSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/PersonRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/security/PersonDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/services/PersonDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/services/PersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/util/PersonValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлена авторизация">
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoPaint/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/WebSocketConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/UserBoardRelationship.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/UserBoardRelationship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/UserRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/static/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/static/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/DTO/ShapeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/PaintApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/PaintApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/CustomAuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/config/CustomAuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/BoardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/ChatController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/LogsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/MessageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/RedirectController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/UserBoardRelationshipController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Logs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/UserBoardRelationship.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/UserBoardRelationshipId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/domain/Views.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/exceptions/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/BoardRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/BoardRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/LogsRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/MessageRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/PersonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/PersonRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/UBRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/repo/UserBoardRelationshipRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/security/PersonDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/security/PersonDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/services/PersonDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/services/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/Paint/util/PersonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/util/PersonValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/test/java/Back/Paint/DemoPaintApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/test/java/backend/DemoPaintApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/CanvasSettings.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Board.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Board.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Board.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/services/boardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/boardService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +123,7 @@
   "keyToString": {
     "Application.DemoPaintApplication.executor": "Run",
     "Application.PaintApplication.executor": "Run",
+    "Application.backend.PaintApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "#17 on future/Issue-13",
@@ -124,7 +144,7 @@
       <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PaintApplication">
+  <component name="RunManager" selected="Application.backend.PaintApplication">
     <configuration name="DemoPaintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Back.Paint.DemoPaintApplication" />
       <module name="DemoPaint" />
@@ -151,8 +171,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="backend.PaintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="backend.PaintApplication" />
+      <module name="DemoPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.backend.PaintApplication" />
         <item itemvalue="Application.PaintApplication" />
         <item itemvalue="Application.DemoPaintApplication" />
       </list>
@@ -183,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729534775788</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавлена авторизация">
+      <option name="closed" value="true" />
+      <created>1732532717266</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732532717266</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +255,7 @@
     <MESSAGE value="he" />
     <MESSAGE value="Добавил контроллер и таблицу для ловли canvas" />
     <MESSAGE value="Добавила функции для связи объектов с сервером." />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавила функции для связи объектов с сервером." />
+    <MESSAGE value="Добавлена авторизация" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена авторизация" />
   </component>
 </project>
