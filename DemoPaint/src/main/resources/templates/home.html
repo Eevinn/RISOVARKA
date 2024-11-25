@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <style>
@@ -14,34 +14,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;jl
+            padding: 10px;
         }
     </style>
+    <title>RISOVARKA</title>
 </head>
-
 <header class="header">
     <h1>Рисоварка</h1>
-    <div>
-        <form th:action="@{/logout}" method="post" th:object="${_csrf}">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <button  type="submit">Выйти из аккаунта</button>
-        </form>
-    </div>
-    <div>
-        <button type="button" onclick="location.href='/login'">Зайти в аккаунт</button>
-    </div>
-    <div>
-        <button type="button" onclick="location.href='/registration'">Зарегистрироваться</button>
-    </div>
 
     <div>
         <button type="button" onclick="location.href='http://localhost:5173/'">Доска</button>
     </div>
 
+    <div sec:authorize="isAnonymous()">
+        <a th:href="@{/login}">Войти</a>
+    </div>
 </header>
 
 <body>
 *Информация о приложении*
 </body>
 </html>
-

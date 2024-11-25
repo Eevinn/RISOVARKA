@@ -18,29 +18,13 @@ export const saveCanvasState = async(canvas) => {
 
 export const sendObjectToBackend = async (object) => {
 	try {
-		const objectData = object.toObject(); // Преобразуем объект в формат JSON
+		const objectData = object.toObject();
 		const payload = {
-			id: objectData.id, // Передаём id объекта
-			text: JSON.stringify(objectData) // Передаём объект в текстовом формате
+			id: objectData.id,
+			text: JSON.stringify(objectData)
 		};
-
-		await axios.post(`${API_URL}/message`, payload); // Отправляем данные на сервер
+		await axios.post(`${API_URL}/message`, payload);
 		console.log("Объект успешно отправлен на сервер:", payload);
-	} catch (error) {
-		console.error("Ошибка при отправке объекта на сервер:", error);
-	}
-};
-
-export const putObjectToBackend = async (object) => {
-	try {
-		const objectData = object.toObject(); // Преобразуем объект в формат JSON
-		const id = objectData.id
-		console.log(`${API_URL}/message/${id}`, { text: JSON.stringify(objectData) })
-
-		await axios.put(`${API_URL}/message/${id}`, { text: JSON.stringify(objectData) }); // Отправляем данные на сервер
-		console.log("Объект успешно отправлен на сервер:", JSON.stringify(objectData)	);
-	} catch (error) {
-		console.error("Ошибка при отправке объекта на сервер:", JSON.stringify(objectData));
 	}
 };
 
