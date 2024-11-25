@@ -1,17 +1,124 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Аккаунт</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <style>
+        body {
+          background-color: #f0f0f0;
+        }
+        .ui.menu {
+          border-radius: 0;
+          margin-bottom: 2em;
+        }
+        .ui.inverted.menu .item, .ui.inverted.menu .link {
+          color: white !important;
+        }
+        .board-list {
+            margin-top: 20px;
+        }
+        .create-board-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .ui.card {
+            width: 300px;
+            margin: 10px;
+        }
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .centered-form .ui.form {
+            width: 100%;
+            max-width: 400px;
+        }
+        .save-button {
+            background-color: #21ba45 !important; /* Зеленый цвет */
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
-    <h1>Аккаунт пользователя</h1>
-    <div sec:authorize="hasRole('ROLE_USER')">
-        <a sec:authentication="name"></a>
-
-        <form th:action="@{/logout}" th:method="POST">
-            <input type="submit" value="Выход">
-        </form>
+<div class="ui inverted menu">
+    <div class="ui container">
+        <a href="/" class="item">Главная</a>
+        <div class="right menu">
+            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
+                <form th:action="@{/logout}" th:method="POST" class="ui form">
+                    <button class="ui button" type="submit">Выход</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="ui container">
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <h1 th:text="${person.username}" class="ui header">Ваш аккаунт</h1>
+    </div>
+
+    <div class="board-list">
+        <h2 class="ui header">Ваши доски</h2>
+        <div th:if="${#lists.isEmpty(boards)}" class="ui warning message">
+            <div class="header">У вас пока нет досок.</div>
+            <p>Создайте новую доску, чтобы начать рисовать!</p>
+        </div>
+        <div th:unless="${#lists.isEmpty(boards)}" class="ui three stackable cards">
+            <div class="card" th:each="board : ${boards}">
+                <div class="content">
+                    <div class="header" th:text="${board.name}">Название доски</div>
+                    <div class="meta">
+                        <span>ID: <span th:text="${board.id}">123</span></span>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a th:href="@{'http://localhost:5173/' + ${board.id}}" class="ui primary button">Открыть</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-board-button">
+        <button class="ui button primary" type="button" onclick="createNewBoard()">Создать новую доску</button>
+    </div>
+</div>
+
+<script>
+    async function createNewBoard() {
+        const boardName = prompt("Введите название новой доски:");
+        if (!boardName) {
+            alert("Название доски не может быть пустым.");
+            return;
+        }
+
+        try {
+            const response = await fetch('/board', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include', // Для отправки куки
+                body: JSON.stringify({ name: boardName, text: '{}' }) // Начальные данные доски
+            });
+
+            if (response.status === 201) { // HTTP 201 Created
+                const board = await response.json();
+                // Перенаправление на фронтенд с ID доски
+                window.location.href = `http://localhost:5173/${board.id}`;
+            } else {
+                alert('Не удалось создать доску.');
+            }
+        } catch (error) {
+            console.error('Ошибка при создании доски:', error);
+            alert('Произошла ошибка при создании доски.');
+        }
+    }
+</script>
 </body>
 </html>
