@@ -1,8 +1,7 @@
 package Back.Paint.controller;
 
-import Back.Paint.domain.User;
-import Back.Paint.repo.UserRepo;
-import com.fasterxml.jackson.annotation.JsonView;
+import Back.Paint.domain.Person;
+import Back.Paint.repo.PersonRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,45 +12,45 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserRepo userRepo;
+    private final PersonRepo personRepo;
 
     @Autowired
-    public UserController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public UserController(PersonRepo personRepo) {
+        this.personRepo = personRepo;
     }
 
     // Метод для получения всех пользователей
     @GetMapping
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
+    public List<Person> getAllUsers() {
+        return personRepo.findAll();
     }
 
     // Метод для получения пользователя по ID
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userRepo.findById(id).orElse(null);
+    public Person getUserById(@PathVariable int id) {
+        return personRepo.findById(id).orElse(null);
     }
 
     // Метод для создания нового пользователя
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userRepo.save(user);
+    public Person createUser(@RequestBody Person person) {
+        return personRepo.save(person);
     }
 
     // Метод для обновления пользователя
     @PutMapping("/{id}")
-    public User updateUser(
-            @PathVariable("id") Long id,
-            @RequestBody User updatedUser
+    public Person updateUser(
+            @PathVariable("id") int id,
+            @RequestBody Person updatedPerson
     ) {
-        User userFromDb = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        BeanUtils.copyProperties(updatedUser, userFromDb, "id", "creationDate");
-        return userRepo.save(userFromDb);
+        Person personFromDb = personRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        BeanUtils.copyProperties(updatedPerson, personFromDb, "id", "creationDate");
+        return personRepo.save(personFromDb);
     }
 
     // Метод для удаления пользователя
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userRepo.deleteById(id);
+    public void deleteUser(@PathVariable int id) {
+        personRepo.deleteById(id);
     }
 }

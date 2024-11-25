@@ -12,7 +12,7 @@ public class UserBoardRelationship {
     @EmbeddedId
     private UserBoardRelationshipId id;
 
-    private Boolean accessModifier;
+    private String accessModifier;
 
     // Геттеры и сеттеры для idBoard и idUser
     public Long getIdBoard() {

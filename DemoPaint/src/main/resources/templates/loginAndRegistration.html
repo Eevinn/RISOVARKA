@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+</head>
+
+<body>
+    <form action="/process_login" method="post">
+        <h1>Войти</h1>
+        <input type="text" id="username" name="username" placeholder="Enter Username" required>
+        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        <div>
+            <input type="hidden" name="referer" th:value="${param.referer}" />
+        </div>
+        <button style="align-self: center; " type="submit">Войти</button>
+        <div th:if="${param.error}">
+            <p style="color:red;">Неверное имя пользователя или пароль.</p>
+        </div>
+        <div th:if="${param.logout}">
+            <p style="color:green;">Вы успешно вышли из аккаунта.</p>
+        </div>
+    </form>
+
+    <h1>Еще не зарегистрированы?</h1>
+    <a href="/registration">
+        <button class="hidden" id="register">Зарегистрироваться</button>
+    </a>
+</body>
+
+</html>

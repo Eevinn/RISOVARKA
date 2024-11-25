@@ -52,18 +52,20 @@ public class BoardController {
 
         return boardRepo.save(BoardFromDb);
     }
+
     // Метод для удаления доски
     @DeleteMapping("/{id}")
     public void deleteBoard(@PathVariable Long id) {
         boardRepo.deleteById(id);
     }
+
     //Метод для изменения имени доски
     @PutMapping("/{id}/updateName")
     public Board updateName(
             @PathVariable("id") Long id,
             @RequestBody String newName
     ) {
-        Board boardFromDb = boardRepo.findById(id).orElseThrow(() -> new RuntimeException("Board not found"));
+        Board boardFromDb = boardRepo.findById(id).orElseThrow(() -> new RuntimeException("Доска не найдена"));
         boardFromDb.setName(newName);
         return boardRepo.save(boardFromDb);
     }
