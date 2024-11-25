@@ -1,32 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </head>
-
 <body>
-    <form action="/process_login" method="post">
-        <h1>Войти</h1>
-        <input type="text" id="username" name="username" placeholder="Enter Username" required>
-        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-        <div>
+
+<style>
+    body {
+      background-color: #f0f0f0; /* Светло-серый фон */
+      padding: 20px;
+    }
+    .ui.form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+  }
+</style>
+
+<div class="ui container">
+    <div class="ui segment">
+        <div class="flex-container">
+            <h2 class="ui header">Войдите в аккаунт</h2>
+        </div>
+        <form class="ui form" action="/process_login" method="post">
+            <div class="field">
+                <label>Имя пользователя</label>
+                <input type="text" name="username" placeholder="Имя пользователя" required>
+            </div>
+            <div class="field">
+                <label>Пароль</label>
+                <input type="password" name="password" placeholder="Пароль" required>
+            </div>
             <input type="hidden" name="referer" th:value="${param.referer}" />
-        </div>
-        <button style="align-self: center; " type="submit">Войти</button>
-        <div th:if="${param.error}">
-            <p style="color:red;">Неверное имя пользователя или пароль.</p>
-        </div>
-        <div th:if="${param.logout}">
-            <p style="color:green;">Вы успешно вышли из аккаунта.</p>
-        </div>
-    </form>
 
-    <h1>Еще не зарегистрированы?</h1>
-    <a href="/registration">
-        <button class="hidden" id="register">Зарегистрироваться</button>
-    </a>
+            <div class="ui error message" th:if="${param.error}">
+                <p>Неверное имя пользователя или пароль.</p>
+            </div>
+            <div class="ui success message" th:if="${param.logout}">
+                <p>Вы успешно вышли из аккаунта.</p>
+            </div>
+            <button class="ui button primary" type="submit">Войти</button>
+        </form>
+        <div class="ui divider"></div>
+        <div class="flex-container">
+            <a href="/registration" class="ui button">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+
 </body>
-
 </html>

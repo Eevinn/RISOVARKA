@@ -6,7 +6,7 @@
 		<version>3.3.1</version>
 		<relativePath/>
 	</parent>
-	<groupId>Back</groupId>
+	<groupId>backend</groupId>
 	<artifactId>DemoPaint</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Paint</name>

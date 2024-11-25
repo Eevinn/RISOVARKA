@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './Board.scss';
 import { fabric } from 'fabric';
-import { IconButton } from '@mui/material';
-import { FloppyDiskIcon, DownloadIcon, SquareIcon } from 'sebikostudio-icons';
+import IconButton from '@mui/material/IconButton';
+import SaveIcon from '@mui/icons-material/Save';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { Button, Form, Input, Modal, Header } from 'semantic-ui-react';
 import ToolbarComponent from '../componentsForBoard/ToolbarComponent.jsx';
-import { saveNameBoard, saveCanvasState, setupCanvasForObjectTracking, sendObjectToBackend } from '../services/boardService.js';
-import axios from 'axios';
-
+import { updateBoard, getBoard } from '../services/boardService.js';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function Board() {
+	const { id } = useParams();
+	const navigate = useNavigate();
 	const canvasRef = useRef(null);
 	const canvasInstanceRef = useRef(null);
 	const [boardName, setBoardName] = useState("");
@@ -22,94 +25,45 @@ function Board() {
 	useEffect(() => {
 		if (canvasRef.current) {
 			const initCanvas = new fabric.Canvas(canvasRef.current, {
-				width: window.innerWidth,
-				height: window.innerHeight,
-				backgroundColor: "#ffffff",
-				selection: true,
+					width: window.innerWidth,
+					height: window.innerHeight,
+					backgroundColor: "#ffffff",
+					selection: true,
 			});
 			canvasInstanceRef.current = initCanvas;
 			initCanvas.renderAll();
 			setIsCanvasReady(true);
-			setupCanvasForObjectTracking(initCanvas);
 			const initialState = initCanvas.toJSON();
 			undoStackRef.current = [initialState];
 			setCanUndo(false);
 
 			const saveState = () => {
-				if (!isUndoRedo.current) {
-					const currentState = initCanvas.toJSON();
-					undoStackRef.current.push(currentState);
-					if (undoStackRef.current.length > 50) {
-						undoStackRef.current.shift();
+					if (!isUndoRedo.current) {
+						const currentState = initCanvas.toJSON();
+						undoStackRef.current.push(currentState);
+						if (undoStackRef.current.length > 50) {
+							undoStackRef.current.shift();
+						}
+						setCanUndo(undoStackRef.current.length > 1);
 					}
-					setCanUndo(undoStackRef.current.length > 1);
-				}
 			};
 
-			const handleObjectAdded = (e) => {
-				const addedObject = e.target;
-				if (addedObject && !addedObject._fromServer) { // Проверяем, что объект не был загружен с сервера
-					console.log("Добавление объекта:", addedObject);
-					canvasInstanceRef.current.renderAll(); // Обязательно перерисовываем канвас
-					sendObjectToBackend(addedObject);
-				}
-			};
-
-			const handleObjectModified = (e) => {
-				const modifiedObject = e.target;
-				if (modifiedObject) {
-					console.log("Изменение объекта:", modifiedObject);
-					canvasInstanceRef.current.renderAll(); // Обязательно перерисовываем канвас
-					sendObjectToBackend(modifiedObject);
-				}
-			};
-
-
-			initCanvas.on("object:added", handleObjectAdded);
-			initCanvas.on("object:modified", handleObjectModified);
 			setIsCanvasReady(true);
-
 			initCanvas.on('object:added', saveState);
 			initCanvas.on('object:modified', saveState);
 			initCanvas.on('object:removed', saveState);
 
 			return () => {
-				initCanvas.off("object:added", handleObjectAdded);
-				initCanvas.off("object:modified", handleObjectModified);
-				initCanvas.dispose();
+					initCanvas.dispose();
 			};
 		}
 	}, []);
 
-
-	const handleChange = (e) => {
-		setBoardName(e.target.value);
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await saveNameBoard(boardName);
-			console.log('Название доски сохранено:', response);
-		} catch (error) {
-			console.error('Ошибка при сохранении названия доски:', error);
-		}
-	};
-
-	const handleSaveCanvas = async () => {
-		try {
-			const canvas = canvasInstanceRef.current;
-			await saveCanvasState(canvas);
-			console.log('Состояние доски сохранено.');
-		} catch (error) {
-			console.error('Ошибка при сохранении состояния доски:', error);
-		}
-	};
-
-	const handleLoadCanvas = async () => {
-		try {
-			const response = await axios.get(`http://localhost:8080/message/24`);
-			const canvasData = response.data.text;
+	useEffect(() => {
+		const loadBoard = async () => {
+			const board = await getBoard(id);
+			setBoardName(board.name);
+			const canvasData = board.text;
 			const canvasJSON = JSON.parse(canvasData);
 			if (canvasInstanceRef.current) {
 				canvasInstanceRef.current.loadFromJSON(canvasJSON, () => {
@@ -117,51 +71,9 @@ function Board() {
 					console.log('Доска загружена');
 				});
 			}
-		} catch (error) {
-			console.error('Ошибка при загрузке доски: ', error);
-		}
-	};
-
-	const handleLoadSingleObject = async () => {
-		try {
-			const response = await axios.get(`http://localhost:8080/message/1732107916465`);
-			const objectData = response.data.text;
-			const parsedObject = JSON.parse(objectData);
-
-			console.log("Полученный объект:", parsedObject);
-			if (canvasInstanceRef.current) {
-				let fabricObject;
-				switch (parsedObject.type) {
-						case "rect":
-							fabricObject = new fabric.Rect(parsedObject);
-							break;
-						case "triangle":
-							fabricObject = new fabric.Triangle(parsedObject);
-							break;
-						case "line":
-							fabricObject = new fabric.Line(parsedObject.points, parsedObject);
-							break;
-						case "textbox":
-						case "text":
-							fabricObject = new fabric.Textbox(parsedObject.text, parsedObject);
-							break;
-						default:
-							console.error("Неизвестный тип объекта:", parsedObject.type);
-							return;
-				}
-
-				fabricObject.id = parsedObject.id;
-				fabricObject._fromServer = true;
-				canvasInstanceRef.current.add(fabricObject);
-				canvasInstanceRef.current.renderAll();
-				console.log("Объект добавлен на канвас.");
-			}
-		} catch (error) {
-			console.error("Ошибка при загрузке объекта с сервера:", error);
-		}
-	};
-
-
+		};
+		loadBoard();
+	}, [id]);
 
 	const handleUndo = useCallback(() => {
 		const canvas = canvasInstanceRef.current;
@@ -210,13 +122,13 @@ function Board() {
 		.then(pastedObjects => {
 			const validPastedObjects = pastedObjects.filter(obj => obj !== undefined);
 			validPastedObjects.forEach(obj => {
-				obj.set({
-					left: obj.left + 10,
-					top: obj.top + 10,
-					evented: true,
-				});
-				canvas.add(obj);
-				canvas.setActiveObject(obj);
+					obj.set({
+						left: obj.left + 10,
+						top: obj.top + 10,
+						evented: true,
+					});
+					canvas.add(obj);
+					canvas.setActiveObject(obj);
 			});
 			canvas.renderAll();
 		})
@@ -243,6 +155,21 @@ function Board() {
 		};
 	}, [handleUndo, handleCopy, handlePaste]);
 
+	const handleSave = async () => {
+		const canvas = canvasInstanceRef.current;
+		const canvasData = JSON.stringify(canvas.toObject());
+		await updateBoard(id, boardName, canvasData);
+		console.log("Доска сохранена")
+	};
+
+	const handleBoardNameChange = (e) => {
+		setBoardName(e.target.value);
+	};
+
+	const handleGoToAccount = () => {
+		window.location.href = 'http://localhost:8080/account';
+	};
+
 	return (
 		<div className='board'>
 			<canvas id='canvas' ref={canvasRef} />
@@ -254,28 +181,20 @@ function Board() {
 				/>
 			</div>
 
-			<div className='settings-wrapper darkmode'>
-				<form className='name-of-board' onSubmit={handleSubmit}>
-					<label>
-						Название доски:
-						<input
-							type="text"
-							value={boardName}
-							onChange={handleChange}
-							placeholder="Доска №1"
-						/>
-					</label>
-					<input type="submit" value="Сохранить" />
-				</form>
+			<div className='settings-wrapper'>
+				<Form>
+					<label>Название доски:</label>
+					<Input
+						value={boardName}
+						onChange={handleBoardNameChange}
+					/>
+				</Form>
 
-				<IconButton onClick={handleSaveCanvas} variant="ghost" size="medium">
-					<FloppyDiskIcon />
+				<IconButton onClick={handleSave}>
+					<SaveIcon />
 				</IconButton>
-				<IconButton onClick={handleLoadCanvas} variant="ghost" size="medium">
-					<DownloadIcon />
-				</IconButton>
-				<IconButton onClick={handleLoadSingleObject} variant="ghost" size="medium">
-					<SquareIcon />
+				<IconButton onClick={handleGoToAccount}>
+					<ExitToAppIcon />
 				</IconButton>
 			</div>
 		</div>
