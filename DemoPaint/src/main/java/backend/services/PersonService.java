@@ -37,7 +37,7 @@ public class PersonService {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         personRepo.save(person);
     }
-
+  
     public List<Person> getAllUsers() {
         return personRepo.findAllByRole("ROLE_USER");
     }

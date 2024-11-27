@@ -1,18 +1,5 @@
 import { fabric } from "fabric";
-
-export const assignIdToShape = (shape) => {
-	shape.id = `${new Date().getTime()}`;
-	shape.toObject = (function(toObject) {
-		return function() {
-			return {
-			...toObject.call(this),
-			id: this.id,
-			};
-		};
-	})(shape.toObject);
-	return shape;
-};
-
+import { sendShapeMessage } from '../services/socket.js';
 
 
 export const addRectangle = (canvas) => {
@@ -24,10 +11,14 @@ export const addRectangle = (canvas) => {
 			height: 60,
 			fill: "#FF0000",
 		});
-		assignIdToShape(rect);
 		canvas.add(rect);
 		canvas.renderAll();
-		console.log("прямоугольник", JSON.stringify(rect.toObject()));
+		const shapeData = JSON.stringify(rect.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(canvas.boardId) }
+		};
+		sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -41,10 +32,14 @@ export const addTriangle = (canvas) => {
 			height: 100,
 			fill: "#FF0000",
 		});
-		assignIdToShape(triangle);
 		canvas.add(triangle);
 		canvas.renderAll();
-		console.log("треугольник", JSON.stringify(triangle.toObject()));
+		const shapeData = JSON.stringify(triangle.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(canvas.boardId) }
+		};
+		sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -55,10 +50,14 @@ export const addLine = (canvas) => {
 			stroke: "#FF0000",
 			strokeWidth: 4,
 		});
-		assignIdToShape(line);
 		canvas.add(line);
 		canvas.renderAll();
-		console.log("линия", JSON.stringify(line.toObject()));
+		const shapeData = JSON.stringify(line.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(canvas.boardId) }
+		};
+		sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -75,10 +74,15 @@ export const addText = (canvas) => {
 			editable: true,
 			textAlign: "center",
 		});
-		assignIdToShape(text);
 		canvas.add(text);
 		canvas.renderAll();
 		canvas.setActiveObject(text);
+		const shapeData = JSON.stringify(text.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(canvas.boardId) }
+		};
+		sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
