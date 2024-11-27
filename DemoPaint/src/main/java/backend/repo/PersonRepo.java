@@ -12,7 +12,6 @@ import java.util.Optional;
 public interface PersonRepo extends JpaRepository<Person, Integer> {
     Optional<Person> findByUsername(String username);
 
-
     @Query("SELECT u FROM Person u WHERE u.role = :role")
     List<Person> findAllByRole(String role); //список всех пользователей
 }
