@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлена авторизация">
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/service/StorageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/storage/UserStorage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/Back/DemoPaint/user/User.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,17 +48,6 @@
     &quot;assignee&quot;: &quot;AlisaKhrn&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState"><![CDATA[{
-  "prStates": [
-    {
-      "id": {
-        "id": "PR_kwDOM8T5js6BZktU",
-        "number": 17
-      },
-      "lastSeen": 1732620967746
-    }
-  ]
-}]]></component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
       <list>
