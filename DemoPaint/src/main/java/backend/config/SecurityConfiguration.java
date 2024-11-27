@@ -42,7 +42,7 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/employee/**").hasRole("ADMIN")
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
@@ -55,7 +55,7 @@ public class SecurityConfiguration {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true")
+                        .logoutSuccessUrl("/?logout=true")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll());

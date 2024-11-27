@@ -31,10 +31,9 @@ public class AccountController {
         }
         Person person = optionalPerson.get();
         List<Board> boards = boardRepo.findAllByUser(person);
-
         model.addAttribute("boards", boards);
         model.addAttribute("person", person);
-        return "account";
+        return "account"; // Возвращает Thymeleaf шаблон account.html
     }
 
 }

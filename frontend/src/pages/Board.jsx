@@ -10,6 +10,7 @@ import { updateBoard, getBoard } from '../services/boardService.js';
 import { getShapesByBoard, addShape, updateShape, deleteShape } from '../services/shapeService.js';
 import { useParams, useNavigate } from 'react-router-dom';
 import { connectWebSocket, sendShapeMessage, disconnectWebSocket } from '../services/socket.js';
+import { v4 as uuidv4 } from 'uuid';
 
 function Board() {
 	const { id } = useParams();
@@ -118,7 +119,7 @@ function Board() {
 			setBoardName(board.name);
 			await loadBoard();
 			connectWebSocket(id, handleIncomingShapeMessage);
-
+			
 		};
 		loadBoardAndConnectWebSocket();
 		return () => {
@@ -161,7 +162,7 @@ function Board() {
 			}
 			const shapeData = JSON.stringify(obj.toJSON(['id']));
 			const shape = {
-				id: obj.id,
+				id: obj.id, 
 				shape: shapeData,
 				board: { id: parseInt(id) }
 			};
