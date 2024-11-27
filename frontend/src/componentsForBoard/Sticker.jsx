@@ -1,4 +1,6 @@
 import { fabric } from "fabric";
+import { sendShapeMessage } from '../services/socket.js';
+
 
 const sizeOfSticker = (text, rect) => {
 	if (text.width > rect.width - 10) {
@@ -48,7 +50,6 @@ export const addSticker = (canvas) => {
 			lockScalingY: true,
 			hasControls: false,
 		});
-
 		canvas.add(sticker);
 		canvas.renderAll();
 		canvas.setActiveObject(sticker);
@@ -68,5 +69,11 @@ export const addSticker = (canvas) => {
 			sizeOfSticker(stickerText, stickerBackground);
 			canvas.renderAll();
 		});
+		const shapeData = JSON.stringify(sticker.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(canvas.boardId) }
+		};
+		sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };

@@ -4,10 +4,12 @@ import { fabric } from 'fabric';
 import IconButton from '@mui/material/IconButton';
 import SaveIcon from '@mui/icons-material/Save';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { Button, Form, Input, Modal, Header } from 'semantic-ui-react';
+import { Button, Form, Input } from 'semantic-ui-react';
 import ToolbarComponent from '../componentsForBoard/ToolbarComponent.jsx';
 import { updateBoard, getBoard } from '../services/boardService.js';
+import { getShapesByBoard, addShape, updateShape, deleteShape } from '../services/shapeService.js';
 import { useParams, useNavigate } from 'react-router-dom';
+import { connectWebSocket, sendShapeMessage, disconnectWebSocket } from '../services/socket.js';
 
 function Board() {
 	const { id } = useParams();
@@ -21,14 +23,59 @@ function Board() {
 	const [canUndo, setCanUndo] = useState(false);
 	const isUndoRedo = useRef(false);
 	const [isCanvasReady, setIsCanvasReady] = useState(false);
+	const shapeMap = useRef(new Map());
+	const isRemoteUpdate = useRef(false);
+
+	const handleIncomingShapeMessage = (shapeMessage) => {
+		const { action, shape } = shapeMessage;
+		console.log("WHAT?:", action, shape);
+		const canvas = canvasInstanceRef.current;
+		if (!canvas) return;
+		isRemoteUpdate.current = true;
+		switch(action) {
+			case 'create':
+				fabric.util.enlivenObjects([JSON.parse(shape.shape)], function(enlivenedObjects) {
+					enlivenedObjects.forEach((enlivenedObject) => {
+						enlivenedObject.set('id', shape.id);
+						canvas.add(enlivenedObject);
+						canvas.renderAll();
+						shapeMap.current.set(shape.id, enlivenedObject);
+					});
+				});
+				break;
+			case 'update':
+				const targetObject = shapeMap.current.get(shape.id);
+				if (targetObject) {
+					canvas.remove(targetObject);
+				}
+				fabric.util.enlivenObjects([JSON.parse(shape.shape)], function(enlivenedObjects) {
+					enlivenedObjects.forEach((enlivenedObject) => {
+						enlivenedObject.set('id', shape.id);
+						canvas.add(enlivenedObject);
+						canvas.renderAll();
+						shapeMap.current.set(shape.id, enlivenedObject);
+					});
+				});
+				break;
+			case 'delete':
+				const objToDelete = shapeMap.current.get(shape.id);
+				if (objToDelete) {
+					canvas.remove(objToDelete);
+					canvas.renderAll();
+					shapeMap.current.delete(shape.id);
+				}
+				break;
+		}
+		isRemoteUpdate.current = false;
+	};
 
 	useEffect(() => {
 		if (canvasRef.current) {
 			const initCanvas = new fabric.Canvas(canvasRef.current, {
-					width: window.innerWidth,
-					height: window.innerHeight,
-					backgroundColor: "#ffffff",
-					selection: true,
+				width: window.innerWidth,
+				height: window.innerHeight,
+				backgroundColor: "#ffffff",
+				selection: true,
 			});
 			canvasInstanceRef.current = initCanvas;
 			initCanvas.renderAll();
@@ -36,44 +83,110 @@ function Board() {
 			const initialState = initCanvas.toJSON();
 			undoStackRef.current = [initialState];
 			setCanUndo(false);
+			initCanvas.boardId = id;
 
 			const saveState = () => {
-					if (!isUndoRedo.current) {
-						const currentState = initCanvas.toJSON();
-						undoStackRef.current.push(currentState);
-						if (undoStackRef.current.length > 50) {
-							undoStackRef.current.shift();
-						}
-						setCanUndo(undoStackRef.current.length > 1);
+				if (!isUndoRedo.current) {
+					const currentState = initCanvas.toJSON();
+					undoStackRef.current.push(currentState);
+					if (undoStackRef.current.length > 50) {
+						undoStackRef.current.shift();
 					}
+					setCanUndo(undoStackRef.current.length > 1);
+				}
 			};
 
 			setIsCanvasReady(true);
+
 			initCanvas.on('object:added', saveState);
 			initCanvas.on('object:modified', saveState);
 			initCanvas.on('object:removed', saveState);
 
+			initCanvas.on('object:added', handleAdd);
+			initCanvas.on('object:modified', handleModify);
+			initCanvas.on('object:removed', handleRemove);
+
 			return () => {
-					initCanvas.dispose();
+				initCanvas.dispose();
 			};
 		}
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
-		const loadBoard = async () => {
+		const loadBoardAndConnectWebSocket = async () => {
 			const board = await getBoard(id);
 			setBoardName(board.name);
-			const canvasData = board.text;
-			const canvasJSON = JSON.parse(canvasData);
-			if (canvasInstanceRef.current) {
-				canvasInstanceRef.current.loadFromJSON(canvasJSON, () => {
-					canvasInstanceRef.current.renderAll();
-					console.log('Доска загружена');
-				});
-			}
+			await loadBoard();
+			connectWebSocket(id, handleIncomingShapeMessage);
+
 		};
-		loadBoard();
+		loadBoardAndConnectWebSocket();
+		return () => {
+			disconnectWebSocket();
+		};
 	}, [id]);
+
+	const loadBoard = async () => {
+		const board = await getBoard(id);
+		setBoardName(board.name);
+		const canvasData = board.text;
+		const canvasJSON = JSON.parse(canvasData);
+		if (canvasInstanceRef.current) {
+			canvasInstanceRef.current.loadFromJSON(canvasJSON, () => {
+				canvasInstanceRef.current.renderAll();
+				console.log('Доска загружена');
+			});
+		}
+	};
+
+	const handleAdd = async (e) => {
+		if (isRemoteUpdate.current) return;
+		const obj = e.target;
+		if (!obj.id) {
+			return;
+		}
+		const shapeData = JSON.stringify(obj.toJSON(['id']));
+		const shape = {
+			shape: shapeData,
+			board: { id: parseInt(id) }
+		};
+		await addShape(shape);
+	};
+
+	const handleModify = async (e) => {
+			if (isRemoteUpdate.current) return;
+			const obj = e.target;
+			if (!obj.id) {
+				return;
+			}
+			const shapeData = JSON.stringify(obj.toJSON(['id']));
+			const shape = {
+				id: obj.id,
+				shape: shapeData,
+				board: { id: parseInt(id) }
+			};
+			try {
+				await updateShape(shape);
+			} catch (error) {
+				console.error('Ошибка при обновлении фигуры:', error);
+			}
+	};
+
+	const handleRemove = async (e) => {
+		if (isRemoteUpdate.current) return;
+		const obj = e.target;
+		if (!obj.id) {
+			return;
+		}
+		const shapeId = obj.id;
+		try {
+			await deleteShape(shapeId);
+			shapeMap.current.delete(shapeId);
+		} catch (error) {
+			console.error('Ошибка при удалении фигуры:', error);
+			alert('Не удалось удалить фигуру.');
+		}
+	};
 
 	const handleUndo = useCallback(() => {
 		const canvas = canvasInstanceRef.current;
@@ -134,19 +247,20 @@ function Board() {
 		})
 	}, []);
 
+
 	useEffect(() => {
 		const handleKeyDown = (e) => {
 			if (e.ctrlKey && e.key === 'z') {
-				e.preventDefault();
-				handleUndo();
+					e.preventDefault();
+					handleUndo();
 			}
 			if (e.ctrlKey && e.key === 'c') {
-				e.preventDefault();
-				handleCopy();
+					e.preventDefault();
+					handleCopy();
 			}
 			if (e.ctrlKey && e.key === 'v') {
-				e.preventDefault();
-				handlePaste();
+					e.preventDefault();
+					handlePaste();
 			}
 		};
 		window.addEventListener('keydown', handleKeyDown);

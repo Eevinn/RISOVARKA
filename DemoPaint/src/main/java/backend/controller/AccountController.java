@@ -32,12 +32,9 @@ public class AccountController {
         Person person = optionalPerson.get();
         List<Board> boards = boardRepo.findAllByUser(person);
 
-        // Логирование количества досок
-        System.out.println("Количество досок для пользователя " + username + ": " + boards.size());
-
         model.addAttribute("boards", boards);
         model.addAttribute("person", person);
-        return "account"; // Возвращает Thymeleaf шаблон account.html
+        return "account";
     }
 
 }
