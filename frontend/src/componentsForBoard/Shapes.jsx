@@ -2,6 +2,27 @@ import { fabric } from "fabric";
 import { sendShapeMessage } from '../services/socket.js';
 
 
+let currentId = parseInt(localStorage.getItem('currentId')) || 1;
+
+export const saveCurrentId = () => {
+	localStorage.setItem('currentId', currentId);
+};
+
+export const assignSequentialIdToShape = (shape) => {
+	shape.id = currentId++;
+	saveCurrentId();
+	shape.toObject = (function (toObject) {
+		return function () {
+			return {
+					...toObject.call(this),
+					id: this.id,
+			};
+		};
+	})(shape.toObject);
+	return shape;
+};
+
+
 export const addRectangle = (canvas) => {
 	if (canvas) {
 		const rect = new fabric.Rect({
@@ -11,6 +32,7 @@ export const addRectangle = (canvas) => {
 			height: 60,
 			fill: "#FF0000",
 		});
+		assignSequentialIdToShape(rect)
 		canvas.add(rect);
 		canvas.renderAll();
 		const shapeData = JSON.stringify(rect.toJSON(['id']));
@@ -32,6 +54,7 @@ export const addTriangle = (canvas) => {
 			height: 100,
 			fill: "#FF0000",
 		});
+		assignSequentialIdToShape(triangle);
 		canvas.add(triangle);
 		canvas.renderAll();
 		const shapeData = JSON.stringify(triangle.toJSON(['id']));
@@ -50,6 +73,7 @@ export const addLine = (canvas) => {
 			stroke: "#FF0000",
 			strokeWidth: 4,
 		});
+		assignSequentialIdToShape(line);
 		canvas.add(line);
 		canvas.renderAll();
 		const shapeData = JSON.stringify(line.toJSON(['id']));
@@ -74,6 +98,7 @@ export const addText = (canvas) => {
 			editable: true,
 			textAlign: "center",
 		});
+		assignSequentialIdToShape(text);
 		canvas.add(text);
 		canvas.renderAll();
 		canvas.setActiveObject(text);
