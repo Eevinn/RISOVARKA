@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import backend.config.CustomLogoutSuccessHandler;
+import backend.config.CustomAuthenticationSuccessHandler;
 
 
 @Configuration
@@ -22,12 +24,17 @@ public class SecurityConfiguration {
     private static final String[] AUTH_WHITELIST = {
             "/", "/login", "/registration", "/process_registration"
     };
-    private final UserDetailsService personDetailsService;
+    private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final PersonDetailsService personDetailsService;
 
     @Autowired
-    public SecurityConfiguration(PersonDetailsService personDetailsService) {
+    public SecurityConfiguration(CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler, CustomLogoutSuccessHandler customLogoutSuccessHandler, PersonDetailsService personDetailsService) {
+        this.customLogoutSuccessHandler = customLogoutSuccessHandler;
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
         this.personDetailsService = personDetailsService;
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -42,29 +49,26 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/employee/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/account").hasRole("USER")
                         .requestMatchers(AUTH_WHITELIST).permitAll()
+                        .requestMatchers("/banned").hasAuthority("ROLE_BANNED")
                         .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/process_login")
-                        .successHandler(customSuccessHandler())
+                        .successHandler(customAuthenticationSuccessHandler)
                         .failureUrl("/login?error=true")
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/?logout=true")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessHandler(customLogoutSuccessHandler)
                         .permitAll());
 
         return http.build();
-    }
-    @Bean
-    public AuthenticationSuccessHandler customSuccessHandler() {
-        return new CustomAuthenticationSuccessHandler();
     }
 
     @Bean

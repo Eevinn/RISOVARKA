@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class PaintApplication {
@@ -16,12 +18,20 @@ public class PaintApplication {
 		SpringApplication.run(PaintApplication.class, args);
 	}
 
-	//admin
 	@Bean
 	public CommandLineRunner init(PersonRepo personRepo, @Autowired BCryptPasswordEncoder passwordEncoder) {
 		return (args) -> {
-			personRepo.save(new Person(1, "admin", passwordEncoder.encode("000"), "ROLE_ADMIN"));
-
+			String username = "admin";
+			String password = "000";
+			String encodedPassword = passwordEncoder.encode(password);
+			Person admin = new Person();
+			admin.setUsername(username);
+			admin.setPassword(encodedPassword);
+			admin.setRole("ROLE_ADMIN");
+			admin.setCreatedAt(LocalDateTime.now()); // <--- Добавлена эта строка
+			personRepo.save(admin);
 		};
 	}
+
 }
+

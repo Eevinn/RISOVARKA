@@ -1,7 +1,9 @@
 package backend.controller;
 
 import backend.model.Board;
+import backend.model.LoginTimestamp;
 import backend.repo.BoardRepo;
+import backend.repo.LoginTimestampRepository;
 import backend.services.PersonService;
 import backend.model.Person;
 import backend.util.PersonValidator;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Controller
@@ -20,12 +23,14 @@ public class MainController {
     private final PersonService personService;
     private final PersonValidator personValidator;
     private final BoardRepo boardRepo;
+    private final LoginTimestampRepository loginTimestampRepository;
 
     @Autowired
-    public MainController(PersonService personService, PersonValidator personValidator, BoardRepo boardRepo) {
+    public MainController(PersonService personService, PersonValidator personValidator, BoardRepo boardRepo, LoginTimestampRepository loginTimestampRepository) {
         this.personService = personService;
         this.personValidator = personValidator;
         this.boardRepo = boardRepo;
+        this.loginTimestampRepository = loginTimestampRepository;
     }
 
     @GetMapping("/")
@@ -42,6 +47,14 @@ public class MainController {
 
     @GetMapping("/login")
     public String showLoginPage() {
+        return "loginAndRegistration";
+    }
+
+    @PostMapping("/process_login")
+    public String processLogin(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            Person client = personService.findByUsername(authentication.getName()).orElse(null);
+        }
         return "loginAndRegistration";
     }
 

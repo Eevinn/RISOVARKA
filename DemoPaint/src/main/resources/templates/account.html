@@ -45,18 +45,17 @@
     </style>
 </head>
 <body>
-<div class="ui inverted menu">
-    <div class="ui container">
-        <a href="/" class="item">Главная</a>
-        <div class="right menu">
-            <div sec:authorize="hasRole('ROLE_USER')" class="ui item">
-                <form th:action="@{/logout}" th:method="POST" class="ui form">
-                    <button class="ui button" type="submit">Выход</button>
-                </form>
-            </div>
-        </div>
+<div class="ui inverted menu" style="border-radius: 0">
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <a class="item" href="/">Главная</a>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
     </div>
 </div>
+
 
 <div class="ui container">
     <div sec:authorize="hasRole('ROLE_USER')">

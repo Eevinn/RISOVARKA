@@ -22,7 +22,7 @@ public class PersonService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Person findOne(int id) {
+    public Person findOne(Long id) {
         Optional<Person> foundClient = personRepo.findById(id);
         return foundClient.orElse(null);
     }
@@ -31,6 +31,9 @@ public class PersonService {
         return personRepo.findByUsername(username);
     }
 
+    public Optional<Person> findByUsername(String username) {
+        return personRepo.findByUsername(username);
+    }
 
     @Transactional
     public void save(Person person){
