@@ -1,6 +1,6 @@
 import { fabric } from "fabric";
 import { sendShapeMessage } from '../services/socket.js';
-
+import { assignSequentialIdToShape } from "./Shapes.jsx";
 
 const sizeOfSticker = (text, rect) => {
 	if (text.width > rect.width - 10) {
@@ -50,6 +50,7 @@ export const addSticker = (canvas) => {
 			lockScalingY: true,
 			hasControls: false,
 		});
+        assignSequentialIdToShape(sticker)
 		canvas.add(sticker);
 		canvas.renderAll();
 		canvas.setActiveObject(sticker);
@@ -71,6 +72,7 @@ export const addSticker = (canvas) => {
 		});
 		const shapeData = JSON.stringify(sticker.toJSON(['id']));
 		const shape = {
+            id: sticker.id,
 			shape: shapeData,
 			board: { id: parseInt(canvas.boardId) }
 		};

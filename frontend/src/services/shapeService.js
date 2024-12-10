@@ -19,8 +19,8 @@ export const addShape = async (shape) => {
 	return response.data;
 };
 
-export const updateShape = async (shape, id) => {
-	const response = await axios.put(`${API_URL}/${id}`, shape, {
+export const updateShape = async (shape) => {
+	const response = await axios.put(`${API_URL}`, shape, {
 		headers: {
 			'Content-Type': 'application/json'
 		},

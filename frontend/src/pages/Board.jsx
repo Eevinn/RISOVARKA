@@ -146,12 +146,15 @@ function Board() {
 		if (!obj.id) {
 			return;
 		}
+        console.log(obj.id)
 		const shapeData = JSON.stringify(obj.toJSON(['id']));
 		const shape = {
+            id: obj.id,
 			shape: shapeData,
 			board: { id: parseInt(id) }
 		};
-		await addShape(shape);
+        //sendShapeMessage(parseInt(id),'create',shape);
+		//await addShape(shape);
 	};
 
 	const handleModify = async (e) => {
@@ -162,18 +165,20 @@ function Board() {
 			}
 			const shapeData = JSON.stringify(obj.toJSON(['id']));
 			const shape = {
-				id: obj.id, 
+                id: obj.id,
 				shape: shapeData,
 				board: { id: parseInt(id) }
 			};
 			try {
-				await updateShape(shape);
+                sendShapeMessage(parseInt(id),'update',shape)
+                console.log(parseInt(id));
+				//await updateShape(shape);
 			} catch (error) {
 				console.error('Ошибка при обновлении фигуры:', error);
 			}
 	};
 
-	const handleRemove = async (e) => {
+	const handleRemove1 = async (e) => {
 		if (isRemoteUpdate.current) return;
 		const obj = e.target;
 		if (!obj.id) {
@@ -182,12 +187,35 @@ function Board() {
 		const shapeId = obj.id;
 		try {
 			await deleteShape(shapeId);
-			shapeMap.current.delete(shapeId);
+			//shapeMap.current.delete(shapeId);
 		} catch (error) {
 			console.error('Ошибка при удалении фигуры:', error);
 			alert('Не удалось удалить фигуру.');
 		}
 	};
+    	const handleRemove = async (e) => {
+    			if (isRemoteUpdate.current) return;
+    			const obj = e.target;
+    			if (!obj.id) {
+    				return;
+    			}
+    			const shapeData = JSON.stringify(obj.toJSON(['id']));
+    			const shape = {
+                    id: obj.id,
+    				shape: shapeData,
+    				board: { id: parseInt(id) }
+    			};
+    			try {
+                    sendShapeMessage(parseInt(id),'delete',shape)
+                    console.log(parseInt(id));
+    				//await updateShape(shape);
+    			} catch (error) {
+    							console.error('Ошибка при удалении фигуры:', error);
+                    			alert('Не удалось удалить фигуру.');
+    			}
+    	};
+
+
 
 	const handleUndo = useCallback(() => {
 		const canvas = canvasInstanceRef.current;

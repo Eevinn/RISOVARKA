@@ -36,12 +36,13 @@ public class ShapeController {
     public ResponseEntity<Shape> addShape(@RequestBody Shape shape, Authentication authentication) {
         String username = authentication.getName();
         Board board = shape.getBoard();
-        Shape savedShape = shapeService.saveShape(shape);
+        Shape savedShape = shapeService.saveShape(shape);// 2 id
         return new ResponseEntity<>(savedShape, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Shape> updateShape(@PathVariable int id, @RequestBody Shape shape, Authentication authentication) {
+    @PutMapping
+    public ResponseEntity<Shape> updateShape( @RequestBody Shape shape, Authentication authentication) {
+        int id = shape.getId();
         Optional<Shape> optionalShape = shapeService.getShapeById(id);
         Shape existingShape = optionalShape.get();
         existingShape.setShape(shape.getShape());

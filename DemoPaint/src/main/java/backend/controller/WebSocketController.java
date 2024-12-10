@@ -25,7 +25,7 @@ public class WebSocketController {
 
         switch (action) {
             case "create":
-                shapeService.saveShape(shape);
+                shapeService.saveShape(shape);//присвот 1
                 break;
             case "update":
                 shapeService.saveShape(shape);
@@ -37,4 +37,5 @@ public class WebSocketController {
 
         messagingTemplate.convertAndSend("/topic/board/" + boardId + "/shape", message);
     }
+
 }
