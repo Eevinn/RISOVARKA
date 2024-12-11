@@ -4,24 +4,76 @@
     <meta charset="UTF-8">
     <title>Аккаунт администратора</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-          background-color: #f0f0f0;
+            background-color: #f0f0f0;
         }
         .ui.menu {
-          border-radius: 0;
+            border-radius: 0;
         }
         .ui.inverted.menu .item, .ui.inverted.menu .link {
-          color: white !important;
+            color: white !important;
         }
         .sidebar {
-          width: 180px;
+            width: 300px;
+        }
+        .container-fluid {
+            padding: 0 20px;
+        }
+        .card .content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .card .content .icon {
+            margin-bottom: 1em;
+        }
+        .card .content h3 {
+            margin-top: 0;
+        }
+        .ui.table {
+            width: 100%;
+            table-layout: fixed;
+        }
+        .ui.table th, .ui.table td {
+            text-align: center;
+            padding: 0.5em 1em;
+        }
+        .action-icons {
+            text-align: center;
+        }
+        .action-icons a {
+            margin: 0 0.5em;
+        }
+        .ui.table .ban.icon, .ui.table .unlock.icon {
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+        }
+        .pusher {
+          padding-top: 50px;
+        }
+        .sidebar.visible {
+          transform: translateX(0%);
         }
     </style>
 </head>
 <body>
 
 <div class="ui inverted menu">
+    <a class="item" onclick="$('.ui.sidebar').sidebar('toggle');">
+        <i class="sidebar icon"></i>
+    </a>
     <div class="header item">
         <h1>Рисоварка</h1>
     </div>
@@ -32,23 +84,133 @@
     </div>
 </div>
 
-<div class="ui grid">
-    <div class="four wide column sidebar">
-        <div class="ui vertical menu">
-            <a href="/admin/users" class="item">Пользователи</a>
-            <a href="#" class="item">Доски пользователей</a>
-            <a href="#" class="item">Настройки</a>
+<div class="pusher">
+    <div class="ui grid">
+        <div class="ui left demo vertical inverted sidebar labeled icon menu">
+            <a class="item" href="/admin/adminPage">
+                <i class="users icon"></i>
+                Домашняя страница администратора
+            </a>
+            <a class="item" href="/admin/users">
+                <i class="object group outline icon"></i>
+                Пользователи
+            </a>
+            <a class="item" href="#">
+                <i class="settings icon"></i>
+                Настройки
+            </a>
         </div>
-    </div>
-    <div class="twelve wide column">
+
         <div class="ui container">
-            <p>Здесь будет статистика и прочее</p>
+            <div class="ui three stackable cards">
+                <div class="orange card">
+                    <div class="content">
+                        <i class="users icon"></i>
+                        <div class="header">Всего пользователей</div>
+                        <div class="description">
+                            <h3 th:text="${totalUsers}">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="red card">
+                    <div class="content">
+                        <i class="object group outline icon"></i>
+                        <div class="header">Всего создано досок</div>
+                        <div class="description">
+                            <h3 th:text="${totalBoards}">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="pink card">
+                    <div class="content">
+                        <i class="hourglass half icon"></i>
+                        <div class="header">Общее время онлайн</div>
+                        <div class="description">
+                            <h3 th:text="${totalOnlineTime}">00h:00m:00s</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui three cards">
+                <div class="olive card">
+                    <div class="content">
+                        <i class="desktop icon"></i>
+                        <div class="header">Активных пользователей сейчас</div>
+                        <div class="description">
+                            <h3 th:text="${activeUsersCount}">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="green card">
+                    <div class="content">
+                        <i class="child icon"></i>
+                        <div class="header">Активных пользователей сегодня</div>
+                        <div class="description">
+                            <h3 th:text="${activeUsersToday}">0</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="teal card">
+                    <div class="content">
+                        <i class="fas fa-user-clock"></i>
+                        <div class="header">Активных пользователей за неделю</div>
+                        <div class="description">
+                            <h3 th:text="${activeUsersLastWeek}">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="ui three cards">
+                <div class="blue card">
+                    <div class="content">
+                        <i class="user plus icon"></i>
+                    <div class="header">Новых пользователей сегодня</div>
+                    <div class="description">
+                    <h3 th:text="${newUsersToday}">0</h3>
+                    </div>
+                </div>
+                </div>
+                    <div class="violet card">
+                        <div class="content">
+                            <i class="calendar check outline icon"></i>
+                            <div class="header">Новых пользователей за неделю</div>
+                        <h3 th:text="${newUsersLastWeek}">0</h3>
+                    </div>
+                    </div>
+                        <div class="purple card">
+                            <div class="content">
+                                <i class="calendar alternate outline icon"></i>
+                                <div class="header">Новых пользователей за месяц</div>
+                                <h3 th:text="${newUsersLastMonth}">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+        <div class="ui fluid centered card">
+            <div class="content top-users-stats">
+                <div class="ui violet header">Топ 3 пользователя по времени онлайн</div>
+                <div class="ui mini horizontal statistics">
+                    <div th:each="entry : ${topUsers}" class="grey statistic">
+                        <div class="value">
+                            <i class="trophy icon"></i>
+                            <span th:text="${entry.username}"></span>
+                        </div>
+                        <!-- <div class="label">
+                            <span th:text="${entry.onlineTime}"></span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        </div>
+</div>
 </div>
 
-
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-</body>
+
 </html>

@@ -18,4 +18,7 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     @Query("SELECT u FROM Person u WHERE u.role = :role")
     List<Person> findAllByRole(String role);
 
+    @Query("SELECT p FROM Person p WHERE p.role IN ('ROLE_USER', 'ROLE_BANNED')")
+    public List<Person> findAllUsers();
+
 }

@@ -18,20 +18,20 @@ public class PaintApplication {
 		SpringApplication.run(PaintApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner init(PersonRepo personRepo, @Autowired BCryptPasswordEncoder passwordEncoder) {
-		return (args) -> {
-			String username = "admin";
-			String password = "000";
-			String encodedPassword = passwordEncoder.encode(password);
-			Person admin = new Person();
-			admin.setUsername(username);
-			admin.setPassword(encodedPassword);
-			admin.setRole("ROLE_ADMIN");
-			admin.setCreatedAt(LocalDateTime.now()); // <--- Добавлена эта строка
-			personRepo.save(admin);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner init(PersonRepo personRepo, @Autowired BCryptPasswordEncoder passwordEncoder) {
+//		return (args) -> {
+//			String username = "admin";
+//			String password = "000";
+//			String encodedPassword = passwordEncoder.encode(password);
+//			Person admin = new Person();
+//			admin.setUsername(username);
+//			admin.setPassword(encodedPassword);
+//			admin.setRole("ROLE_ADMIN");
+//			admin.setCreatedAt(LocalDateTime.now());
+//			personRepo.save(admin);
+//		};
+//	}
 
 }
 
