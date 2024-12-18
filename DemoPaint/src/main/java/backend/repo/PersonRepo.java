@@ -1,0 +1,24 @@
+package backend.repo;
+
+import backend.model.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface PersonRepo extends JpaRepository<Person, Integer> {
+    Optional<Person> findByUsername(String username);
+
+    @Query("SELECT u FROM Person u WHERE u.role = :role")
+    List<Person> findAllByRole(String role);
+
+    @Query("SELECT p FROM Person p WHERE p.role IN ('ROLE_USER', 'ROLE_BANNED')")
+    public List<Person> findAllUsers();
+
+}

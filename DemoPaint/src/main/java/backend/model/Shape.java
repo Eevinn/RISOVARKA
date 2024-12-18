@@ -1,0 +1,23 @@
+package backend.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "shapes")
+public class Shape {
+    @Id
+    private int id;
+
+    @Column(name = "shape", columnDefinition = "TEXT")
+    private String shape;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "board_id", nullable = false)
+    private Board board;
+}

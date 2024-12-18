@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлена авторизация">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/LoginTimestamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/LoginTimestamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/LoginTimestampRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/LoginTimestampRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/PersonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/PersonRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="6e87210631b37c4c7b7af7a4ad952cb19c4d5bcb" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AlisaKhrn&quot;
+  }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOM8T5js6BZktU&quot;,
+        &quot;number&quot;: 17
+      },
+      &quot;lastSeen&quot;: 1732620967746
+    }
+  ]
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Eevinn/RISOVARKA.git&quot;,
+    &quot;accountId&quot;: &quot;ae1489dd-f8ce-4bf5-9c24-d0e4854e88d2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2nFTZZYLcyvI7QI2YQIilLLkOJP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DemoPaintApplication.executor": "Run",
+    "Application.PaintApplication.executor": "Run",
+    "Application.backend.PaintApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "#10 on Dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/alisa/OneDrive/Desktop/4курс/RISOVARKA/DemoPaint/src/main/resources/templates",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.backend.PaintApplication">
+    <configuration name="DemoPaintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Back.Paint.DemoPaintApplication" />
+      <module name="DemoPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Back.Paint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Back.Paint.PaintApplication" />
+      <module name="DemoPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Back.Paint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="backend.PaintApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="backend.PaintApplication" />
+      <module name="DemoPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.backend.PaintApplication" />
+        <item itemvalue="Application.PaintApplication" />
+        <item itemvalue="Application.DemoPaintApplication" />
+        <item itemvalue="Application.backend.PaintApplication" />
+        <item itemvalue="Application.PaintApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="" />
+      <created>1728567881082</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728567881082</updated>
+    </task>
+    <task id="LOCAL-00001" summary="he">
+      <option name="closed" value="true" />
+      <created>1728568484816</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728568484816</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Добавил контроллер и таблицу для ловли canvas">
+      <option name="closed" value="true" />
+      <created>1729534775788</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729534775788</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Добавлена авторизация">
+      <option name="closed" value="true" />
+      <created>1732532717266</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732532717266</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="future/Issue-13" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="he" />
+    <MESSAGE value="Добавил контроллер и таблицу для ловли canvas" />
+    <MESSAGE value="Добавила функции для связи объектов с сервером." />
+    <MESSAGE value="Добавлена авторизация" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена авторизация" />
+  </component>
+</project>

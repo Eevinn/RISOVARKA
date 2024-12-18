@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .ui.menu {
+            border-radius: 0;
+        }
+         .ui.segment {
+            margin-bottom: 1em;
+        }
+        .ui.card {
+            margin-bottom: 1em;
+        }
+        .ui.table {
+            width: 100%;
+        }
+        .ui.inverted.menu .item, .ui.inverted.menu .link {
+            color: white !important;
+        }
+        .sidebar {
+            width: 300px;
+        }
+        .container-fluid {
+            padding: 0 20px;
+        }
+        .ui.table {
+            width: 100%;
+            table-layout: fixed;
+        }
+        .ui.table th, .ui.table td {
+            text-align: center;
+            padding: 0.5em 1em;
+        }
+        .action-icons {
+            text-align: center;
+        }
+        .pusher {
+          padding-top: 50px;
+        }
+        .sidebar.visible {
+          transform: translateX(0%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="ui inverted menu">
+    <a class="item" onclick="$('.ui.sidebar').sidebar('toggle');">
+        <i class="sidebar icon"></i>
+    </a>
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <a class="item" href="/">Главная</a>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
+    </div>
+</div>
+
+<div class="pusher">
+    <div class="ui grid">
+        <div class="ui left demo vertical inverted sidebar labeled icon menu">
+            <a class="item" href="/admin/adminPage">
+                <i class="users icon"></i>
+                Домашняя страница администратора
+            </a>
+            <a class="item" href="/admin/users">
+                <i class="object group outline icon"></i>
+                Пользователи
+            </a>
+            <a class="item" href="/admin/block">
+                <i class="settings icon"></i>
+                Заблокированные пользователи
+            </a>
+        </div>
+
+        <div class="ui container">
+
+            <div class="ui labeled button" tabindex="0">
+                <div class="ui basic blue button">
+                    <i class="left arrow icon"></i>
+                </div>
+                <a href="/admin/users" class="ui basic left pointing blue label">
+                    Назад
+                </a>
+            </div>
+
+            <div class="ui segment">
+                <h2 class="ui header">Профиль пользователя</h2>
+                <div class="ui grid">
+                    <div class="twelve wide column">
+                        <p><strong>Имя пользователя:</strong> <span th:text="${user.username}">Имя пользователя</span></p>
+                        <p><strong>Роль:</strong> <span th:text="${user.role}">Роль пользователя</span></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ui segment">
+                <h2 class="ui header">Доски пользователя</h2>
+                <div class="ui cards">
+                    <div th:each="board : ${boards}" class="card">
+                        <div class="content">
+                            <div class="header" th:text="${board.name}">Название доски</div>
+                        </div>
+                        <div class="extra content">
+                            <a th:href="@{'http://localhost:5173/' + ${board.id}}" class="ui primary button">Открыть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="ui segment">
+                <h2 class="ui header">История входов</h2>
+                <table class="ui celled striped table">
+                    <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Время входа</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="timestamp, iterStat : ${loginTimestamps}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${#temporals.format(timestamp.loginTime, 'dd.MM.yyyy HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</html>
+
+
+
+

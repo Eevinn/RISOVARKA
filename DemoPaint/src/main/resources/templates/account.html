@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккаунт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .ui.menu {
+            border-radius: 0;
+            margin-bottom: 2em;
+        }
+        .ui.inverted.menu .item,
+        .ui.inverted.menu .link {
+            color: white !important;
+        }
+        .board-list {
+            margin-top: 20px;
+        }
+        .create-board-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .ui.card {
+            width: 300px;
+            margin: 10px;
+        }
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .centered-form .ui.form {
+            width: 100%;
+            max-width: 400px;
+        }
+        .save-button {
+            background-color: #21ba45 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+<div class="ui inverted menu">
+    <div class="ui container">
+        <a href="/" class="header item">
+            <h1 style="margin:0;">Рисоварка</h1>
+        </a>
+        <div class="right menu">
+            <div sec:authorize="hasRole('ROLE_USER')" class="item">
+                <form th:action="@{/logout}" th:method="POST">
+                    <button class="ui button" type="submit">
+                        <i class="sign out icon"></i> Выход
+                    </button>
+                </form>
+            </div>
+            <a sec:authorize="!isAuthenticated()" href="/login" class="item">
+                Войти
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="ui container">
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <h1 class="ui header" th:text="'Ваш аккаунт: ' + ${person.username}"></h1>
+    </div>
+
+    <div class="board-list">
+        <h2 class="ui header">Ваши доски</h2>
+        <div th:if="${#lists.isEmpty(boards)}" class="ui warning message">
+            <div class="header">У вас пока нет досок.</div>
+        </div>
+        <div th:unless="${#lists.isEmpty(boards)}" class="ui three stackable cards">
+            <div class="card" th:each="board : ${boards}">
+                <div class="content">
+                    <div class="header" th:text="${board.name}">Название доски</div>
+                </div>
+                <div class="extra content">
+                    <a th:href="@{'http://localhost:5173/' + ${board.id}}" class="ui primary button">
+                        <i class="eye icon"></i> Открыть доску
+                    </a>
+                    <form th:action="@{/board/{id}(id=${board.id})}" th:method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button class="ui red icon button" type="submit" title="Удалить">
+                            <i class="trash icon"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-board-button">
+        <button class="ui button primary" type="button" onclick="createNewBoard()">
+            <i class="plus icon"></i> Создать новую доску
+        </button>
+    </div>
+</div>
+
+<script>
+    const boardName = "Без названия";
+    async function createNewBoard() {
+        const response = await fetch('/board', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({ name: boardName, text: '{}' })
+        });
+        const board = await response.json();
+        window.location.href = `http://localhost:5173/${board.id}`;
+
+    }
+
+    async function deleteBoard(button) {
+        const boardId = button.getAttribute('data-board-id');
+        const card = button.closest('.card');
+        const response = await fetch(`/board/${boardId}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        });
+    }
+</script>
+
+</body>
+</html>

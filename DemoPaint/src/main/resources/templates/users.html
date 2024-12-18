@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .ui.menu {
+            border-radius: 0;
+        }
+        .ui.inverted.menu .item, .ui.inverted.menu .link {
+            color: white !important;
+        }
+        .sidebar {
+            width: 300px;
+        }
+        .container-fluid {
+            padding: 0 20px;
+        }
+        .card .content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .card .content .icon {
+            margin-bottom: 1em;
+        }
+        .card .content h3 {
+            margin-top: 0;
+        }
+        .ui.table {
+            width: 100%;
+            table-layout: fixed;
+        }
+        .ui.table th, .ui.table td {
+            text-align: center;
+            padding: 0.5em 1em;
+        }
+        .action-icons {
+            text-align: center;
+        }
+        .action-icons a {
+            margin: 0 0.5em;
+        }
+        .ui.table .ban.icon, .ui.table .unlock.icon {
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+        }
+        .pusher {
+          padding-top: 50px;
+        }
+        .sidebar.visible {
+          transform: translateX(0%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="ui inverted menu">
+    <a class="item" onclick="$('.ui.sidebar').sidebar('toggle');">
+        <i class="sidebar icon"></i>
+    </a>
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <a class="item" href="/">Главная</a>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
+    </div>
+</div>
+
+<div class="pusher">
+    <div class="ui grid">
+        <div class="ui left demo vertical inverted sidebar labeled icon menu">
+            <a class="item" href="/admin/adminPage">
+                <i class="users icon"></i>
+                Домашняя страница администратора
+            </a>
+            <a class="item" href="/admin/users">
+                <i class="object group outline icon"></i>
+                Пользователи
+            </a>
+            <a class="item" href="/admin/block">
+                <i class="settings icon"></i>
+                Заблокированные пользователи
+            </a>
+        </div>
+
+
+        <div class="ui container">
+            <div class="main-container clearfix gutter-lg">
+                <div class="container">
+                    <h1>Все пользователи</h1>
+                    <table class="ui text alignment table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя пользователя</th>
+                            <th>Роль</th>
+                            <th>Профиль</th>
+                            <th class="right aligned">Бан</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="person : ${persons}">
+                            <td th:text="${person.id}"></td>
+                            <td th:text="${person.username}"></td>
+                            <td th:text="${person.role}"></td>
+                            <td class="right aligned">
+                                <button class="ui basic button">
+                                    <i class="icon user"></i>
+                                    <a th:href="@{/admin/users/{id}(id=${person.id})}">Посмотреть профиль</a>
+                                </button>
+                            </td>
+                            <td class="right aligned">
+                                <form th:action="@{/admin/users/{id}/ban(id=${person.id})}" method="post" th:if="${person.role != 'ROLE_BANNED'}">
+                                    <button type="submit" class="ui orange basic button">
+                                        <i class="minus icon"></i>
+                                    </button>
+                                </form>
+                                <form th:action="@{/admin/users/{id}/unban(id=${person.id})}" method="post" th:if="${person.role == 'ROLE_BANNED'}">
+                                    <button type="submit" class="ui green basic button">
+                                        <i class="plus icon"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</body>
+
+</html>

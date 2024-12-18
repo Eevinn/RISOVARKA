@@ -1,0 +1,41 @@
+.color-selector {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	margin-top: 12px;
+}
+
+.selected-color {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 5px solid black;
+}
+
+.dropdown {
+	position: absolute;
+	bottom: 30px;
+	background-color: rgb(218, 218, 218);
+	padding: 5px;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	display: flex;
+	gap: 5px;
+}
+
+.color-circle {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 1px solid transparent;
+	transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-circle:hover {
+	transform: scale(1.1);
+}
+
+.color-circle.selected {
+	border-color: black;
+}
