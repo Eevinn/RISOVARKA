@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлено в аккаунт администратора бан пользователей, статистика по новым пользователям, по активным пользователям &#10;Изменен дизайн админской части">
-      <change afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/block.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,59 +50,58 @@
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;AlisaKhrn&quot;
-  }
-}</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOM8T5js6BZktU&quot;,
-        &quot;number&quot;: 17
-      },
-      &quot;lastSeen&quot;: 1732620967746
     }
-  ]
-}</component>
+    }</component>
+  <component name="GitHubPullRequestState">{
+    &quot;prStates&quot;: [
+    {
+    &quot;id&quot;: {
+    &quot;id&quot;: &quot;PR_kwDOM8T5js6BZktU&quot;,
+    &quot;number&quot;: 17
+    },
+    &quot;lastSeen&quot;: 1732620967746
+    }
+    ]
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Eevinn/RISOVARKA.git&quot;,
     &quot;accountId&quot;: &quot;a315a05e-b695-487e-aaf0-94e85215a6dd&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 4
-}</component>
+    &quot;customColor&quot;: &quot;&quot;,
+    &quot;associatedIndex&quot;: 4
+    }</component>
   <component name="ProjectId" id="2nFTZZYLcyvI7QI2YQIilLLkOJP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DemoPaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.backend.PaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;future/issue-26&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/1/CompilerIDE-future-issue-23&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DemoPaintApplication.executor": "Run",
+    "Application.PaintApplication.executor": "Run",
+    "Application.backend.PaintApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "future/issue-27",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/home/Desktop/RISOVARKA-future-issue-26",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\1\RISOVARKA-Dev\DemoPaint\src\main\resources\templates" />
-
       <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
