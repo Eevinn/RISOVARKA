@@ -12,13 +12,13 @@ import lombok.*;
 @Table(name = "shapes")
 public class Shape {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "shape", columnDefinition = "TEXT")
     private String shape;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 }
