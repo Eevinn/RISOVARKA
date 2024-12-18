@@ -36,4 +36,14 @@ public class AccountController {
         return "account"; // Возвращает Thymeleaf шаблон account.html
     }
 
+    @GetMapping("/banned")
+    public String getBannedPage(Authentication authentication, Model model) {
+        String username = authentication.getName();
+        Optional<Person> optionalPerson = personService.getPerson(username);
+        if (optionalPerson.isEmpty()) {
+            return "redirect:/login";
+        }
+        return "banned";
+    }
+
 }
