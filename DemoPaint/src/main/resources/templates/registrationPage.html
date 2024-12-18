@@ -7,12 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 </head>
-<body>
 
 <style>
     body {
       background-color: #f0f0f0;
-      padding: 20px;
     }
     .ui.form {
       max-width: 400px;
@@ -30,13 +28,73 @@
       text-align: center;
       margin-top: 30px;
     }
-        .flex-container {
+    .flex-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100px;
   }
+        }
+        .main-container {
+            padding: 2em;
+        }
+        .hero-section {
+            background-color: #4285f4; /* Blue hero background */
+            color: white;
+            padding: 5em 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 1em;
+        }
+        .feature-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 3em;
+        }
+        .feature {
+            width: 30%;
+            margin-bottom: 2em;
+            padding: 2em;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .feature i {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .feature {
+                width: 100%;
+            }
+        }
+
 </style>
+
+<body>
+
+<div class="ui inverted menu" style="border-radius: 0">
+    <div class="header item">
+        <h1>Рисоварка</h1>
+    </div>
+    <div class="right menu">
+        <a th:if="${#authorization.expression('isAuthenticated()')}" class="item" href="/logout">Выйти</a>
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/login">Войти</a>
+    </div>
+    <div class="center menu">
+        <a th:unless="${#authorization.expression('isAuthenticated()')}" class="item" href="/registration">Зарегистрироваться</a>
+    </div>
+    <div class="center menu">
+        <a class="item" href="/">На главную</a>
+    </div>
+</div>
 
 <div class="ui container">
     <div class="ui segment">
@@ -59,7 +117,7 @@
 
         <div class="welcome-text">
             <h3 class="ui header">Уже зарегистрированы?</h3>
-            <a href="/login" class="ui button">Войти</a>
+            <a href="/login" class="ui inverted blue button">Войти</a>
         </div>
     </div>
 </div>
