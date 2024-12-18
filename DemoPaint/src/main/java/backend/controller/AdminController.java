@@ -84,6 +84,15 @@ public class AdminController {
         return "users";
     }
 
+    //список и подсчет заблокированных пользователей
+    @GetMapping("/block")
+    public String listOfBlock(Authentication authentication, Model model) {
+        List<Person> persons = adminService.getBannedUsers();
+        model.addAttribute("persons", persons);
+        model.addAttribute("bannedUsers", adminService.countBannedUsers());
+        return "block";
+    }
+
     //просмотр профиля пользователя(вместе с его досками)
     @GetMapping("/users/{id}")
     public String viewUserProfile(@PathVariable("id") Long id, Model model, Authentication authentication) {

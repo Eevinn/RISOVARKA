@@ -93,4 +93,12 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
+    public List<Person> getBannedUsers() {
+        return personRepo.findAll().stream()
+                .filter(client -> "ROLE_BANNED".equals(client.getRole()))
+                .collect(Collectors.toList());
+    }
+
+
+
 }
