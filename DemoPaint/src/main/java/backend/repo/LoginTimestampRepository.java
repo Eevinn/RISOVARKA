@@ -12,7 +12,7 @@ public interface LoginTimestampRepository extends JpaRepository<LoginTimestamp, 
 
     List<LoginTimestamp> findAllByPerson(Person person);
 
-    List<LoginTimestamp> findByPersonId(Long personId);
+    List<LoginTimestamp> findByPersonId(Integer personId);
 
     LoginTimestamp findFirstByPersonAndLogoutTimeIsNullOrderByLoginTimeDesc(Person person);
 

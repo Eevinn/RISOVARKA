@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлено в аккаунт администратора бан пользователей, статистика по новым пользователям, по активным пользователям &#10;Изменен дизайн админской части">
+    <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлена авторизация">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/LoginTimestamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/LoginTimestamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/LoginTimestampRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/LoginTimestampRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/PersonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/repo/PersonRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/services/PersonService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/loginAndRegistration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/registrationPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/templates/account.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,39 +53,46 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="6e87210631b37c4c7b7af7a4ad952cb19c4d5bcb" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-    &quot;lastFilter&quot;: {
+  &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;AlisaKhrn&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="GitHubPullRequestState">{
-    &quot;prStates&quot;: [
+  &quot;prStates&quot;: [
     {
-    &quot;id&quot;: {
-    &quot;id&quot;: &quot;PR_kwDOM8T5js6BZktU&quot;,
-    &quot;number&quot;: 17
-    },
-    &quot;lastSeen&quot;: 1732620967746
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOM8T5js6BZktU&quot;,
+        &quot;number&quot;: 17
+      },
+      &quot;lastSeen&quot;: 1732620967746
     }
-    ]
-    }</component>
+  ]
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
-    &quot;selectedUrlAndAccountId&quot;: {
+  &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Eevinn/RISOVARKA.git&quot;,
-    &quot;accountId&quot;: &quot;a315a05e-b695-487e-aaf0-94e85215a6dd&quot;
-    }
-    }</component>
+    &quot;accountId&quot;: &quot;ae1489dd-f8ce-4bf5-9c24-d0e4854e88d2&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
-    &quot;customColor&quot;: &quot;&quot;,
-    &quot;associatedIndex&quot;: 4
-    }</component>
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2nFTZZYLcyvI7QI2YQIilLLkOJP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -89,10 +106,10 @@
     "Application.backend.PaintApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "future/issue-27",
+    "git-widget-placeholder": "#10 on Dev",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/home/Desktop/RISOVARKA-future-issue-26",
+    "last_opened_file_path": "C:/Users/alisa/OneDrive/Desktop/4курс/RISOVARKA/DemoPaint/src/main/resources/templates",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
@@ -101,15 +118,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\1\RISOVARKA-Dev\DemoPaint\src\main\resources\templates" />
       <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="backend.repo" />
-      <recent name="backend.model" />
     </key>
   </component>
   <component name="RunManager" selected="Application.backend.PaintApplication">
@@ -157,6 +169,8 @@
         <item itemvalue="Application.backend.PaintApplication" />
         <item itemvalue="Application.PaintApplication" />
         <item itemvalue="Application.DemoPaintApplication" />
+        <item itemvalue="Application.backend.PaintApplication" />
+        <item itemvalue="Application.PaintApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -193,23 +207,7 @@
       <option name="project" value="LOCAL" />
       <updated>1732532717266</updated>
     </task>
-    <task id="LOCAL-00004" summary="Добавлен аккаунт администратора с просмотром пользователеей и досок пользователей, добавила активность пользователей">
-      <option name="closed" value="true" />
-      <created>1733082336235</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1733082336235</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Добавлено в аккаунт администратора бан пользователей, статистика по новым пользователям, по активным пользователям &#10;Изменен дизайн админской части">
-      <option name="closed" value="true" />
-      <created>1733927099178</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1733927099178</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,8 +238,6 @@
     <MESSAGE value="Добавил контроллер и таблицу для ловли canvas" />
     <MESSAGE value="Добавила функции для связи объектов с сервером." />
     <MESSAGE value="Добавлена авторизация" />
-    <MESSAGE value="Добавлен аккаунт администратора с просмотром пользователеей и досок пользователей, добавила активность пользователей" />
-    <MESSAGE value="Добавлено в аккаунт администратора бан пользователей, статистика по новым пользователям, по активным пользователям &#10;Изменен дизайн админской части" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено в аккаунт администратора бан пользователей, статистика по новым пользователям, по активным пользователям &#10;Изменен дизайн админской части" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена авторизация" />
   </component>
 </project>

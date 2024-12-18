@@ -27,7 +27,7 @@ public class PersonService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Person findOne(Long id) {
+    public Person findOne(int id) {
         Optional<Person> foundClient = personRepo.findById(id);
         return foundClient.orElse(null);
     }

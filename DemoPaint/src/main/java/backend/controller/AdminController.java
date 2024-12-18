@@ -95,7 +95,7 @@ public class AdminController {
 
     //просмотр профиля пользователя(вместе с его досками)
     @GetMapping("/users/{id}")
-    public String viewUserProfile(@PathVariable("id") Long id, Model model, Authentication authentication) {
+    public String viewUserProfile(@PathVariable("id") int id, Model model, Authentication authentication) {
         Person user = personRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         List<Board> boards = boardRepo.findAllByUser(user);
         model.addAttribute("user", user);
@@ -110,7 +110,7 @@ public class AdminController {
 
     //присвоение пользователю роли "забанен"
     @PostMapping("/users/{id}/ban")
-    public String banUser(@PathVariable("id") Long id) {
+    public String banUser(@PathVariable("id") int id) {
         Person user = personRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         user.setRole("ROLE_BANNED");
         personRepo.save(user);
@@ -119,7 +119,7 @@ public class AdminController {
 
     //разблокировать пользователя
     @PostMapping("/users/{id}/unban")
-    public String unbanUser(@PathVariable("id") Long id) {
+    public String unbanUser(@PathVariable("id") int id) {
         Person user = personRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         user.setRole("ROLE_USER");
         personRepo.save(user);

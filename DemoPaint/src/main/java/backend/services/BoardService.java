@@ -26,4 +26,8 @@ public class BoardService {
         Optional<Board> optionalBoard = boardRepo.findById(Integer.parseInt(boardId));
         return optionalBoard.map(Board::getText).orElse("{}");
     }
+
+    public void deleteBoard(int boardId) {
+        boardRepo.deleteById(boardId);
+    }
 }

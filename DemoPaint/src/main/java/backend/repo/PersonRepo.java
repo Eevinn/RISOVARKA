@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepo extends JpaRepository<Person, Long> {
+public interface PersonRepo extends JpaRepository<Person, Integer> {
     Optional<Person> findByUsername(String username);
 
     @Query("SELECT u FROM Person u WHERE u.role = :role")

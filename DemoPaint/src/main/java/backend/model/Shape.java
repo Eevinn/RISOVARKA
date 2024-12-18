@@ -12,7 +12,6 @@ import lombok.*;
 @Table(name = "shapes")
 public class Shape {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "shape", columnDefinition = "TEXT")

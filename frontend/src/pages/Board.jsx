@@ -10,11 +10,10 @@ import ToolbarComponent from '../componentsForBoard/ToolbarComponent.jsx';
 import { updateBoard, getBoard } from '../services/boardService.js';
 import { connectWebSocket, sendShapeMessage, disconnectWebSocket } from '../services/socket.js';
 import Grid from '../componentsForBoard/Grid.jsx';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function Board() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const canvasRef = useRef(null);
   const canvasInstanceRef = useRef(null);
   const [boardName, setBoardName] = useState("");
@@ -30,13 +29,12 @@ function Board() {
 
   const handleIncomingShapeMessage = (shapeMessage) => {
     const { action, shape } = shapeMessage;
-    console.log("Incoming Shape Message:", action, shape);
     const canvas = canvasInstanceRef.current;
     if (!canvas) return;
     isRemoteUpdate.current = true;
     switch(action) {
       case 'create':
-        fabric.util.enlivenObjects([JSON.parse(shape.shape)], function(enlivenedObjects) {
+        fabric.util.enlivenObjects([JSON.parse(shape.shape)], (enlivenedObjects) => {
           enlivenedObjects.forEach((enlivenedObject) => {
             enlivenedObject.set('id', shape.id);
             canvas.add(enlivenedObject);
@@ -50,7 +48,7 @@ function Board() {
         if (targetObject) {
           canvas.remove(targetObject);
         }
-        fabric.util.enlivenObjects([JSON.parse(shape.shape)], function(enlivenedObjects) {
+        fabric.util.enlivenObjects([JSON.parse(shape.shape)], (enlivenedObjects) => {
           enlivenedObjects.forEach((enlivenedObject) => {
             enlivenedObject.set('id', shape.id);
             canvas.add(enlivenedObject);
@@ -68,7 +66,7 @@ function Board() {
         }
         break;
       default:
-        console.warn("Unknown action:", action);
+        break;
     }
     isRemoteUpdate.current = false;
   };
@@ -83,8 +81,7 @@ function Board() {
       canvasInstanceRef.current = initCanvas;
       initCanvas.renderAll();
       setIsCanvasReady(true);
-      const initialState = initCanvas.toJSON(['objects']);
-      undoStackRef.current = [initialState];
+      undoStackRef.current = [initCanvas.toJSON(['objects'])];
       setCanUndo(false);
       initCanvas.boardId = id;
 
@@ -99,64 +96,13 @@ function Board() {
         }
       };
 
-
       initCanvas.on('object:added', saveState);
       initCanvas.on('object:modified', saveState);
       initCanvas.on('object:removed', saveState);
 
-
-
-    
       initCanvas.on('object:added', handleAdd);
       initCanvas.on('object:modified', handleModify);
       initCanvas.on('object:removed', handleRemove);
-
-      // Инициализация панорамирования
-      const handlePan = (opt) => {
-        const evt = opt.e;
-        if (evt.button === 2) { // ПКМ
-          initCanvas.isPanning = true;
-          initCanvas.lastPosX = evt.clientX;
-          initCanvas.lastPosY = evt.clientY;
-          initCanvas.selection = false;
-          initCanvas.discardActiveObject();
-          initCanvas.renderAll();
-          console.log("Board: Panning started");
-        }
-      };
-
-      const handlePanMove = (opt) => {
-        if (initCanvas.isPanning) {
-          const evt = opt.e;
-          const deltaX = evt.clientX - initCanvas.lastPosX;
-          const deltaY = evt.clientY - initCanvas.lastPosY;
-          initCanvas.lastPosX = evt.clientX;
-          initCanvas.lastPosY = evt.clientY;
-
-          const vpt = fabricCanvas.viewportTransform;
-          if (vpt) {
-            // Создаём новый массив вместо изменения существующего
-            const newVpt = vpt.slice(); // или [...vpt]
-            newVpt[4] += deltaX;
-            newVpt[5] += deltaY;
-            try {
-              fabricCanvas.setViewportTransform(newVpt);
-              fabricCanvas.renderAll();
-              console.log(`Board: Panned to (${newVpt[4]}, ${newVpt[5]})`);
-            } catch (error) {
-              console.error("Board: Error in onMouseMove setViewportTransform", error);
-            }
-          }
-        }
-      };
-
-      const handlePanEnd = () => {
-        if (initCanvas.isPanning) {
-          initCanvas.isPanning = false;
-          initCanvas.selection = true;
-          console.log("Board: Panning ended");
-        }
-      };
 
       return () => {
         initCanvas.dispose();
@@ -164,7 +110,6 @@ function Board() {
     }
   }, [id]);
 
-  // Загрузка доски и подключение WebSocket
   useEffect(() => {
     const loadBoardAndConnectWebSocket = async () => {
       try {
@@ -173,9 +118,8 @@ function Board() {
         await loadBoard();
         connectWebSocket(id, handleIncomingShapeMessage);
         setIsBoardLoaded(true);
-        console.log("Board: Loaded and WebSocket connected");
       } catch (error) {
-        console.error("Board: Error loading board and connecting WebSocket", error);
+        // Ошибка загрузки
       }
     };
     loadBoardAndConnectWebSocket();
@@ -184,7 +128,6 @@ function Board() {
     };
   }, [id]);
 
-  // Функция загрузки состояния доски
   const loadBoard = async () => {
     try {
       const board = await getBoard(id);
@@ -192,85 +135,51 @@ function Board() {
       const canvasData = board.text;
       const canvasJSON = JSON.parse(canvasData);
       if (canvasInstanceRef.current) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           canvasInstanceRef.current.loadFromJSON(canvasJSON, () => {
-            // Сбрасываем viewportTransform после загрузки состояния
             canvasInstanceRef.current.setViewportTransform([1, 0, 0, 1, 0, 0]);
             canvasInstanceRef.current.renderAll();
-            console.log('Board: Canvas state loaded');
             resolve();
-          }, function(o, object) {
-            console.log("Board: Loading object:", object);
           });
         });
-      } else {
-        return Promise.reject("Board: Canvas instance not initialized");
       }
     } catch (error) {
-      console.error("Board: Error loading board", error);
       throw error;
     }
   };
 
-  // Обработчики добавления, изменения и удаления фигур
-  const handleAdd = async (e) => {
+  const handleAdd = (e) => {
     if (isRemoteUpdate.current) return;
     const obj = e.target;
-    if (!obj.id) {
-      return;
-    }
-    console.log(`Board: Object added with id ${obj.id}`);
+    if (!obj.id) return;
+  };
+
+  const handleModify = (e) => {
+    if (isRemoteUpdate.current) return;
+    const obj = e.target;
+    if (!obj.id) return;
     const shapeData = JSON.stringify(obj.toJSON(['id']));
     const shape = {
       id: obj.id,
       shape: shapeData,
       board: { id: parseInt(id) }
     };
+    sendShapeMessage(parseInt(id), 'update', shape);
   };
 
-  const handleModify = async (e) => {
+  const handleRemove = (e) => {
     if (isRemoteUpdate.current) return;
     const obj = e.target;
-    if (!obj.id) {
-      return;
-    }
-    console.log(`Board: Object modified with id ${obj.id}`);
+    if (!obj.id) return;
     const shapeData = JSON.stringify(obj.toJSON(['id']));
     const shape = {
       id: obj.id,
       shape: shapeData,
       board: { id: parseInt(id) }
     };
-    try {
-      sendShapeMessage(parseInt(id), 'update', shape);
-      console.log(`Board: Sent update for object id ${obj.id}`);
-    } catch (error) {
-      console.error('Board: Error updating shape:', error);
-    }
+    sendShapeMessage(parseInt(id), 'delete', shape);
   };
 
-  const handleRemove = async (e) => {
-    if (isRemoteUpdate.current) return;
-    const obj = e.target;
-    if (!obj.id) {
-      return;
-    }
-    console.log(`Board: Object removed with id ${obj.id}`);
-    const shapeData = JSON.stringify(obj.toJSON(['id']));
-    const shape = {
-      id: obj.id,
-      shape: shapeData,
-      board: { id: parseInt(id) }
-    };
-    try {
-      sendShapeMessage(parseInt(id), 'delete', shape);
-      console.log(`Board: Sent delete for object id ${obj.id}`);
-    } catch (error) {
-      console.error('Board: Error deleting shape:', error);
-    }
-  };
-
-  // Обработчики Undo, Copy, Paste
   const handleUndo = useCallback(() => {
     const canvas = canvasInstanceRef.current;
     if (undoStackRef.current.length > 1 && canvas) {
@@ -278,12 +187,10 @@ function Board() {
       undoStackRef.current.pop();
       const previousState = undoStackRef.current[undoStackRef.current.length - 1];
       canvas.loadFromJSON(previousState, () => {
-        // Сбрасываем viewportTransform после загрузки предыдущего состояния
         canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         canvas.renderAll();
         isUndoRedo.current = false;
         setCanUndo(undoStackRef.current.length > 1);
-        console.log("Board: Undo performed");
       });
     }
   }, []);
@@ -297,17 +204,13 @@ function Board() {
           if (clonedObj) {
             resolve(clonedObj);
           } else {
-            reject("Board: Cloning object failed");
+            reject();
           }
         });
       });
     }))
     .then(clonedObjects => {
       clipboardRef.current = clonedObjects.filter(obj => obj !== undefined);
-      console.log("Board: Objects copied to clipboard");
-    })
-    .catch(error => {
-      console.error("Board: Error copying objects:", error);
     });
   }, []);
 
@@ -321,7 +224,7 @@ function Board() {
           if (clonedObj) {
             resolve(clonedObj);
           } else {
-            reject("Board: Cloning object failed during paste");
+            reject();
           }
         });
       });
@@ -338,14 +241,9 @@ function Board() {
         canvas.setActiveObject(obj);
       });
       canvas.renderAll();
-      console.log("Board: Objects pasted from clipboard");
-    })
-    .catch(error => {
-      console.error("Board: Error pasting objects:", error);
     });
   }, []);
 
-  // Обработчик клавиатурных сокращений
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.key === 'z') {
@@ -372,22 +270,18 @@ function Board() {
       const canvas = canvasInstanceRef.current;
       const canvasData = JSON.stringify(canvas.toObject(['objects']));
       await updateBoard(id, boardName, canvasData);
-      console.log("Board: Board saved");
     } catch (error) {
-      console.error("Board: Error saving board:", error);
+      // Ошибка сохранения
     }
   };
-
 
   const handleBoardNameChange = (e) => {
     setBoardName(e.target.value);
   };
 
-
-	const handleGoToAccount = () => {
-		window.location.href = 'http://localhost:8080/account';
-	};
-
+  const handleGoToAccount = () => {
+    window.location.href = 'http://localhost:8080/account';
+  };
 
   return (
     <div className='board'>
@@ -402,7 +296,6 @@ function Board() {
           onChangePosition={setToolbarPosition}
         />
       </div>
-
       <div className='settings-wrapper'>
         <div className="settings-container">
           <label className="settings-label">Название доски:</label>

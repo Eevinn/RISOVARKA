@@ -3,6 +3,7 @@ package backend.controller;
 import backend.model.Board;
 import backend.model.Person;
 import backend.repo.BoardRepo;
+import backend.services.BoardService;
 import backend.services.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class BoardController {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private BoardService boardService;
 
 
     @PostMapping
@@ -59,16 +63,12 @@ public class BoardController {
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteBoard(@PathVariable int id, Authentication authentication) {
-        Optional<Board> boardOpt = boardRepo.findById(id);
-        Board board = boardOpt.get();
-        if (!board.getUser().getUsername().equals(authentication.getName())) {
-            return  "redirect:http://localhost:8080/account";
-        }
-        boardRepo.delete(board);
-        return "redirect:http://localhost:8080/account";
+    @DeleteMapping("/board/{id}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable int id, Authentication authentication) {
+        boardService.deleteBoard(id);
+        return ResponseEntity.noContent().build();
     }
+
 
     @GetMapping
     public String getAllBoards(Authentication authentication, Model model) {

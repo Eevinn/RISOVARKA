@@ -1,5 +1,6 @@
 package backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,7 +8,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,39 +15,34 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@ToString(exclude = "loginTimes")
 @Entity
 @Table(name = "app_user")
-public class Person implements Serializable {
-    private static final long serialVersionUID = 2L;
+public class Person {
 
     @Id
-    @Column(name = "person_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "person_id")
+    private int id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     @NotBlank(message = "Имя пользователя не может быть пустым")
     private String username;
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
-
-    // Связь с таблицей login_timestamps
     @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<LoginTimestamp> loginTimes = new ArrayList<>();
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private String role = "ROLE_USER";
 
+    @Column(name = "password", nullable = false)
     @NotEmpty(message = "Пароль не должен быть пустым")
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
-
 }
