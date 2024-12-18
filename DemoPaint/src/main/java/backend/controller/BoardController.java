@@ -60,14 +60,14 @@ public class BoardController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBoard(@PathVariable int id, Authentication authentication) {
+    public String deleteBoard(@PathVariable int id, Authentication authentication) {
         Optional<Board> boardOpt = boardRepo.findById(id);
         Board board = boardOpt.get();
         if (!board.getUser().getUsername().equals(authentication.getName())) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return  "redirect:http://localhost:8080/account";
         }
         boardRepo.delete(board);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "redirect:http://localhost:8080/account";
     }
 
     @GetMapping

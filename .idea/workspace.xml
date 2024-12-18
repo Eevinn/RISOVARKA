@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a516131-68ce-44f9-8d77-de1443dbc48e" name="Changes" comment="Добавлена авторизация">
+      <change afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Grid.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/ShapeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/WebSocketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/controller/BoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/java/backend/model/Shape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DemoPaint/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Shapes.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/componentsForBoard/Sticker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/componentsForBoard/Sticker.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Board.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/shapeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/shapeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Board.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Board.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,23 +93,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DemoPaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.backend.PaintApplication.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Dev&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/alisa/OneDrive/Desktop/4курс/RISOVARKA/DemoPaint/src/main/resources/templates&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DemoPaintApplication.executor": "Run",
+    "Application.PaintApplication.executor": "Run",
+    "Application.backend.PaintApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fukki/OneDrive/Рабочий стол/RISOVARKA-future-issue-26",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alisa\OneDrive\Desktop\4курс\RISOVARKA\DemoPaint\src\main\resources\templates" />

@@ -19,19 +19,63 @@ canvas {
 }
 
 .settings-wrapper {
-	position: fixed;
-	top: 5%;
-	left: 40%;
-	display: flex;
-	align-items: center;
-	z-index: 1000;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-	text-align: center;
-	border-radius: 5px;
+     position: fixed;
+     top: 5%;
+     left: 40%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 15px;
+     z-index: 1000;
+     padding: 10px;
+     background: rgba(255, 255, 255, 0.9);
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     border-radius: 10px;
 }
 
 .toolbar-position {
 	margin-top: 10px;
+}
+
+.settings-container {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     background: rgba(255, 255, 255, 0.9);
+     border-radius: 8px;
+}
+
+.settings-label {
+     font-size: 16px;
+     font-weight: bold;
+     color: #333;
+}
+
+.board-name-input {
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     padding: 5px 10px;
+     font-size: 16px;
+     outline: none;
+     transition: border-color 0.3s;
+
+     &:hover {
+      border-color: #007bff;
+     }
+}
+
+.settings-icon {
+    background-color: transparent;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    padding: 8px;
+
+     &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: #000;
+      transform: scale(1.1);
+     }
 }
 
 .toolbar-wrapper {

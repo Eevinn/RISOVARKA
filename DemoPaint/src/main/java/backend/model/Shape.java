@@ -18,7 +18,7 @@ public class Shape {
     @Column(name = "shape", columnDefinition = "TEXT")
     private String shape;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 }

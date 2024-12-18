@@ -41,7 +41,7 @@ export const addRectangle = (canvas) => {
 		};
         console.log(rect.id);
         console.log(shape);
-		sendShapeMessage(canvas.boardId, 'create', shape);
+		//sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -64,7 +64,7 @@ export const addTriangle = (canvas) => {
 			shape: shapeData,
 			board: { id: parseInt(canvas.boardId) }
 		};
-		sendShapeMessage(canvas.boardId, 'create', shape);
+		//sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -84,7 +84,7 @@ export const addLine = (canvas) => {
 			shape: shapeData,
 			board: { id: parseInt(canvas.boardId) }
 		};
-		sendShapeMessage(canvas.boardId, 'create', shape);
+		//sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
@@ -111,7 +111,7 @@ export const addText = (canvas) => {
 			shape: shapeData,
 			board: { id: parseInt(canvas.boardId) }
 		};
-		sendShapeMessage(canvas.boardId, 'create', shape);
+		//sendShapeMessage(canvas.boardId, 'create', shape);
 	}
 };
 
